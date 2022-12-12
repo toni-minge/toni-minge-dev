@@ -37,7 +37,7 @@ async function handleImgChanges(_path, type){
 
 async function convertImgToBase64(_path){
   try {
-    const img_buffer = await sharp(_path).resize(20).toBuffer()
+    const img_buffer = await sharp(_path).resize(50).toBuffer()
     const base64 = img_buffer.toString('base64')
 
     await addOrCreateFile(_path, base64)

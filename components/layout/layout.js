@@ -11,7 +11,7 @@ function Layout({ children, optionalHeader, meta }) {
     <div>
       {optionalHeader ? <OptionalHeader meta={meta}/> : null}
       {!optionalHeader ? <Header pathname={router.pathname} /> : null}
-      <main className="max-w-6xl mx-auto p-4">{children}</main>
+      <main className="max-w-6xl mx-auto p-4 z-20">{children}</main>
       <Footer />
     </div>
   );
