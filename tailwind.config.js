@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         neuehaas: ['neue-haas-grotesk-display', 'sans-serif'],
-        courier: ['courier', 'courier']
+        courier: ['courier-std', 'monospace']
       },
       fontWeight: {
         medium: '600',
