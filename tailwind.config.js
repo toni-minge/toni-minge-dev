@@ -27,6 +27,9 @@ module.exports = {
         tmgrey: '#1A1B1A',
         tmdark: '#1A1B1A',
         tmlight: '#D9D9D9'
+      },
+      cursor: {
+        'loescher': 'url("/img/loescher_sm.png"), pointer',
       }
     },
   },

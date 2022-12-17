@@ -13,13 +13,15 @@ body {
   @apply font-neuehaas bg-tmgrey;
 }
 
+
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  @apply font-medium mb-2;
+  @apply font-medium mb-2  cursor-loescher;
 }
 
 h1 {
@@ -38,6 +40,10 @@ h3 {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.fake-program {
+  font-size: 12px;
 }
 
 footer {

@@ -12,6 +12,9 @@
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
     "@next/mdx": "^13.0.6",
+    "@react-three/drei": "^9.46.7",
+    "@react-three/fiber": "^8.9.1",
+    "@types/three": "^0.146.0",
     "base64-img": "^1.0.4",
     "chokidar": "^3.5.3",
     "fs": "^0.0.1-security",
@@ -21,7 +24,9 @@
     "path": "^0.12.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "^0.31.2"
+    "react-transition-group": "^4.4.5",
+    "sharp": "^0.31.2",
+    "three": "^0.147.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

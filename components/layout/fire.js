@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { FireContext } from '../../services/state/FireProvider'
 
 const fireTypes = {
   1: '/fire/f_01.gif',
@@ -6,15 +7,17 @@ const fireTypes = {
   3: '/fire/f_03.gif',
 }
 
-const Fire = ({active, cb, type, classOverrides, scale, zIndex, ...props}) => {
-  const show = false
-  const canKill = false
+const Fire = ({type, classOverrides, scale, zIndex, index, end, ...props}) => {
+  const { activeFire, canKill, removeFire } = useContext(FireContext)
+
+  const show = true
   const [isKilled, setIsKilled] = useState(false)
+
+  const active = activeFire.indexOf(index) !== -1
 
   const killFire = () => {
     if (!canKill) return;
-    setIsKilled(!isKilled)
-    cb && cb()
+    removeFire(index)
   }
 
   return (

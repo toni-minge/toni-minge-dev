@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Link from 'next/link'
+
+import { FireContext } from '../../services/state/FireProvider'
 
 const structure = [
   {
@@ -74,13 +76,25 @@ const Folder = ({ name, children, open, setOpen, level }) => {
 }
 
 const File = ({ name, level, type, link }) => {
+
+  const { setCanKill } = useContext(FireContext)
+
+  const grabExtinguisher = (name) => {
+    if (name === "fire distinguisher") {
+      console.log("can kill")
+
+      setCanKill(true)
+      document.body.classList.add("loescher");
+    }
+  }
+
   return (
     <div style={{marginLeft: `${level * 30}px`}} className={`flex items-center gap-2`}>
       <div className="border-b border-l h-3 w-3 self-start border-white"></div>
       <img className="h-6" src="/icons/t_file.svg"/>
       {type === "link" ?
         <Link href={link} legacyBehavior><a className="font-courier cursor-pointer">{name}</a></Link> :
-        <span className="font-courier">{name}</span>
+        <span onClick={() => grabExtinguisher(name)} className="font-courier cursor-pointe">{name}</span>
       }
     </div>
   )
