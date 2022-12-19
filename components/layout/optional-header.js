@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import Header from './header.js'
 import BlurImage from './blur-image.js'
 
+import projects_base64 from '../../lib/base64/public/thumbs-projects/base64.json'
+
 function OptionalHeader({meta}) {
   const [matches, setMatches] = useState(false);
 
@@ -20,9 +22,10 @@ function OptionalHeader({meta}) {
     <div className="realative">
       <div className="w-screen" style={{width: '100vw', height: matches ? '40vh' : '80vh', overflow: 'hidden'}}>
         <BlurImage
-          src={meta.headerImage}
-          base64={meta.base64}
-          alt=""
+          src={meta.cover_image}
+          base64={projects_base64.data[`public${meta.cover_image}`]}
+          classOverrides={"w-full bg-tmdark h-full"}
+          alt={meta.title}
             />
       </div>
       <div className="absolute w-full top-0 z-20">

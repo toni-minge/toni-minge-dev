@@ -49,7 +49,7 @@ export default function Home({articles, projects}) {
 
 
       <Layout optionalHeader={false}>
-        <div className="flex flex-wrap gap-32">
+        <div className="flex flex-wrap gap-16">
           <div className="grid w-full md:grid-cols-2 grid-cols-1 gap-x-8">
             <div className="">
               <h1>Fullstack Web Development</h1>
@@ -110,7 +110,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      projects: _proj.reverse(),
+      projects: _proj,
       articles: articles.reverse()
     },
   }

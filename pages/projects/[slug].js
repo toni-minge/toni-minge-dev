@@ -11,22 +11,28 @@ import 'highlight.js/styles/atom-one-dark-reasonable.css'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { getProjectFromSlug, getProjectSlug } from '../../services/utils/mdx'
 
+import Layout from '../../components/layout/layout'
+
 export default function Blog({ post: { source, frontmatter } }) {
+
   return (
     <React.Fragment>
       <Head>
         <title>{frontmatter.title} | My blog</title>
       </Head>
-      <div className="article-container">
+      <Layout optionalHeader={true} meta={frontmatter}>
+        <MDXRemote {...source}  />
+      </Layout>
+      {/*<div className="article-container">
         <h1 className="article-title">{frontmatter.title}</h1>
         <p className="publish-date">
           {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
           {frontmatter.readingTime}
         </p>
         <div className="content">
-          <MDXRemote {...source}  />
+
         </div>
-      </div>
+      </div>*/}
     </React.Fragment>
   )
 }
@@ -41,7 +47,7 @@ export async function getStaticPaths() {
     paths,
     // in situations where you try to access a path
     // that does not exist. it'll return a 404 page
-    fallback: false,
+    fallback: true,
   }
 }
 

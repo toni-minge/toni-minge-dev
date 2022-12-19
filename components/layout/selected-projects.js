@@ -34,7 +34,7 @@ const SelectedProjects = ({projects}) => {
               </div>
               <div className="my-4 text-tmlight">
                 <h3 className="font-roman leading-6">{p.title}</h3>
-                <span className="font-roman font-small">{p.excerpt}</span>
+                <span className="font-roman font-small opacity-50">{p.excerpt}</span>
               </div>
             </div>
           </Link>
