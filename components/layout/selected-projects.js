@@ -25,7 +25,7 @@ const SelectedProjects = ({projects}) => {
   return (
     <div className="">
       <h2 className="font-roman">Selected Projects</h2>
-      <div className="grid w-full grid-cols-2 gap-4">
+      <div className="grid w-full grid-cols-1 sm:grid-cols-2 gap-4">
         {projects.map((p, index) =>
           <Link href={`/projects/${p.slug}`} passHref>
             <div className="col-span-1 w-full">
