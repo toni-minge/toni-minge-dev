@@ -1,3 +1,5 @@
+import { getAllProjects, getAllPosts } from '../services/utils/mdx'
+
 import { useContext } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -5,6 +7,8 @@ import Layout from '../components/layout/layout';
 import BlurImage from '../components/layout/blur-image'
 import Fire from '../components/layout/fire'
 import GameOver from '../components/overlays/game-over'
+import ClientSection from '../components/layout/client-section'
+import SelectedProjects from '../components/layout/selected-projects'
 
 import { FireContext } from '../services/state/FireProvider'
 
@@ -28,7 +32,7 @@ const headerImage = {
   },
 }
 
-export default function Home() {
+export default function Home({articles, projects}) {
 
   const { activeFire, addFire, playbook, gameOver } = useContext(FireContext)
 
@@ -45,17 +49,22 @@ export default function Home() {
 
 
       <Layout optionalHeader={false}>
-        <div>
-          <div className="flex flex-col lg:flex-row">
-            <div className="lg:w-1/2 relative">
-              <h1>Creative Web <br/> Development</h1>
+        <div className="flex flex-wrap gap-32">
+          <div className="grid w-full md:grid-cols-2 grid-cols-1 gap-x-8">
+            <div className="">
+              <h1>Fullstack Web Development</h1>
+              <h3 className="font-roman mb-8">
+                Traditional and Creative Coding
+              </h3>
               <Fire zIndex={"30"} classOverrides="-top-16 left-10 rotate-90" type={3} index={5}/>
               <Fire zIndex={"30"} classOverrides="top-14 rotate-1" type={1} index={4}/>
 
-              <Folder/>
+              <div className="hidden md:block">
+                <Folder/>
+              </div>
             </div>
-            <div className="lg:w-1/2">
-              <div className="relative max-w-md mx-auto">
+            <div className="flex flex-col md:justify-start">
+              <div className="relative max-w-md w-full mx-auto">
                 <Fire zIndex={"40"} classOverrides="top-8 " type={1} index={1}/>
                 <Fire zIndex={"40"} classOverrides="top-6 left-24" type={2} index={2}/>
                 <Fire zIndex={"40"} classOverrides="-top-64 left-48" scale={"1.5"} type={2} index={3}/>
@@ -72,11 +81,37 @@ export default function Home() {
                     <SceneManager />
                 </div>
               </div>
+              <div className="md:hidden block w-full">
+                <Folder/>
+              </div>
             </div>
           </div>
+          <div className="w-full">
+            <SelectedProjects projects={projects}/>
+          </div>
+          <div className="">
+            <h2 className=" font-roman text-center">
+              Hier kommt die Schnittstelle zwischen Kunst und dings und Bums und so und noch mehr text.
+            </h2>
+          </div>
+          <ClientSection />
         </div>
       </Layout>
 
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const projects = await getAllProjects()
+  const articles = await getAllPosts()
+
+  const _proj = projects.filter(p => p.selected)
+
+  return {
+    props: {
+      projects: _proj.reverse(),
+      articles: articles.reverse()
+    },
+  }
 }

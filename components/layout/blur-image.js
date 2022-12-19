@@ -9,7 +9,7 @@ function BlurImage({ src, base64, classOverrides, style, ...props }) {
   return (
     <div
       style={{paddingBottom: width && height ? `${height / width * 100}%` : "" }}
-      className={`relative overflow-hidden h-full ${classOverrides}`}>
+      className={`relative overflow-hidden ${classOverrides}`}>
       <Image
         src={src}
         layout="fill"

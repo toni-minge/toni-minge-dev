@@ -2,9 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import Link from "next/link"
 import dayjs from 'dayjs'
-import { getAllProjects } from '../../services/utils/mdx'
+import { getAllPosts } from '../../services/utils/mdx'
 
-export default function ProjectPage({ posts }) {
+export default function BlogPage({ posts }) {
   return (
     <React.Fragment>
       <Head>
@@ -13,7 +13,7 @@ export default function ProjectPage({ posts }) {
       <div>
         {posts.map((frontMatter) => {
           return (
-            <Link href={`/projects/${frontMatter.slug}`} passHref>
+            <Link href={`/blog/${frontMatter.slug}`} passHref>
               <div>
                 <h1 className="title">{frontMatter.title}</h1>
                 <p className="summary">{frontMatter.excerpt}</p>
@@ -31,7 +31,7 @@ export default function ProjectPage({ posts }) {
 }
 
 export async function getStaticProps() {
-  const articles = await getAllProjects()
+  const articles = await getAllPosts()
 
   articles
     .map((article) => article.data)

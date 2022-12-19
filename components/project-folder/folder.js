@@ -56,7 +56,7 @@ const structure = [
 
 const _defaultOpenFolders = [
   "root",
-  "latest projects",
+  // "latest projects",
 ]
 
 

@@ -21,9 +21,14 @@ const Lights = () => {
 }
 
 const Antonio = () => {
-  const hasMouse = 'onmousemove' in window
 
-  if (hasMouse) {
+  const usesTouch = () => {
+    return ( 'ontouchstart' in window ) ||
+           ( navigator.maxTouchPoints > 0 ) ||
+           ( navigator.msMaxTouchPoints > 0 );
+  }
+
+  if (!usesTouch()) {
     useEffect(() => {
       // Set up the mouse move event listener
       window.addEventListener('mousemove', onMouseMove);
@@ -41,7 +46,7 @@ const Antonio = () => {
   const fbx = useLoader(FBXLoader, "/3d/antonio_002_model.fbx");
 
   useFrame(() => {
-    if (!hasMouse) {
+    if (usesTouch()) {
       antonioRef.current.rotation.y += 0.01
     }
   });

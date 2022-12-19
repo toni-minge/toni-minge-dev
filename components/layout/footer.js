@@ -7,7 +7,7 @@ function Footer() {
         <div className="w-full lg:w-1/4">
           <span className="">Socials</span>
           <ul>
-            <li><a href="">github</a></li>
+            <li><a lassName="cursor-pointer" href="">github</a></li>
             <li><a href="">instagram</a></li>
             <li><a href="">linkedin</a></li>
             <li><a href="">painting website</a></li>
@@ -17,7 +17,7 @@ function Footer() {
         <div className="w-full lg:w-1/4">
           <span className="">Latest Work</span>
           <ul>
-            <li><Link href="/projects/ethernal-faces">Ethernal Faces</Link></li>
+            <li><Link c href="/projects/ethernal-faces">Ethernal Faces</Link></li>
             <li><Link href="/projects/loulu">Loulu</Link></li>
             <li><Link href="/projects/hyphe">Hyphe</Link></li>
             <li><Link href="/projects/yoona-ai">Yoona.ai</Link></li>

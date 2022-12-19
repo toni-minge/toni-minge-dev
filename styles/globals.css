@@ -13,9 +13,9 @@ body {
   @apply font-neuehaas bg-tmgrey;
 }
 
-body.loescher {
+/* body.loescher {
   @apply cursor-loescher;
-}
+} */
 
 h1,
 h2,
@@ -39,9 +39,21 @@ h3 {
 }
 
 
+
+@keyframes rolldownblurAnim {
+  from {
+    transform: translateY(0);
+  },
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+
 a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .fake-program {
