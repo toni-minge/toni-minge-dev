@@ -1,6 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from "next/link"
+import Layout from '../../components/layout/layout'
+import ArticlesGrid from '../../components/layout/articles-grid'
+import ClientSection from '../../components/layout/client-section'
+import ContactSection from '../../components/layout/contact-section'
 import dayjs from 'dayjs'
 import { getAllPosts } from '../../services/utils/mdx'
 
@@ -11,20 +15,16 @@ export default function BlogPage({ posts }) {
         <title>My Blog</title>
       </Head>
       <div>
-        {posts.map((frontMatter) => {
-          return (
-            <Link href={`/blog/${frontMatter.slug}`} passHref>
-              <div>
-                <h1 className="title">{frontMatter.title}</h1>
-                <p className="summary">{frontMatter.excerpt}</p>
-                <p className="date">
-                  {dayjs(frontMatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
-                  {frontMatter.readingTime}
-                </p>
-              </div>
-            </Link>
-          )
-        })}
+        <Layout>
+          <div className="">
+            <h1 className="mb-4 text-gradient block leading-loose">My Thoughts on Things</h1>
+          </div>
+          <ArticlesGrid articles={posts} />
+          <div className="mt-24">
+            <ClientSection />
+          </div>
+          <ContactSection />
+        </Layout>
       </div>
     </React.Fragment>
   )

@@ -54,7 +54,7 @@ const Menu = ({isOpen}) => {
             </div>
             <div className="text-left">
               <span>Latest Work</span>
-              <div classname="">
+              <div className="">
                 <Link href="/projects/ethernal-faces" legacyBehavior>
                   <a className="block text-xl font-medium">Ethernal Faces</a>
                 </Link>
@@ -72,7 +72,7 @@ const Menu = ({isOpen}) => {
 
             <div className="text-left sm:hidden block">
               <span>Links</span>
-              <div classname="">
+              <div className="">
                 <a target="blank" href="https://toniminge.de" className="block text-xl font-medium">paintings</a>
                 <a target="blank" href="https://github.com/toni-minge" className="block text-xl font-medium">github</a>
                 <a target="blank" href="https://www.instagram.com/toni_minge/" className="block text-xl font-medium">instagram</a>
@@ -100,7 +100,7 @@ const Menu = ({isOpen}) => {
 
             <div className="text-left hidden sm:block">
               <span>Links</span>
-              <div classname="">
+              <div className="">
                 <a target="blank" href="https://toniminge.de" className="block text-xl font-medium">paintings</a>
                 <a target="blank" href="https://github.com/toni-minge" className="block text-xl font-medium">github</a>
                 <a target="blank" href="https://www.instagram.com/toni_minge/" className="block text-xl font-medium">instagram</a>

@@ -10,9 +10,9 @@ const SceneContext = createContext()
 const SceneProvider = ({ children }) => {
   const [activeScene, setActiveScene] = useState(1)
   const scenes = {
-    1: () => <LoadingScene delay={3000}/>,
+    1: () => <LoadingScene delay={1300}/>,
     2: () => <LoginScene/>,
-    3: () => <LoadingScene delay={4000}/>,
+    3: () => <LoadingScene delay={2100}/>,
     4: () => <ProgramScene />,
     5: () => <LoadingScene delay={1200}/>,
     6: () => <AnimationScene />,

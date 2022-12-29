@@ -47,7 +47,7 @@ const ClientSection = () => {
       <div className="grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-2">
         {clients.map((client, index) => (
           <div className="h-full w-full" key={index}>
-            {renderImgItem(client)}
+            <img src={client.src}/>
           </div>
         ))}
       </div>

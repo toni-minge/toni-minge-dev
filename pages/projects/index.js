@@ -4,27 +4,28 @@ import Link from "next/link"
 import dayjs from 'dayjs'
 import { getAllProjects } from '../../services/utils/mdx'
 
+import Layout from '../../components/layout/layout'
+import ProjectsGrid from '../../components/layout/selected-projects'
+
+import ClientSection from '../../components/layout/client-section'
+import ContactSection from '../../components/layout/contact-section'
+
 export default function ProjectPage({ posts }) {
   return (
     <React.Fragment>
       <Head>
-        <title>My Blog</title>
+        <title>My Projects</title>
       </Head>
       <div>
-        {posts.map((frontMatter) => {
-          return (
-            <Link href={`/projects/${frontMatter.slug}`} passHref>
-              <div>
-                <h1 className="title">{frontMatter.title}</h1>
-                <p className="summary">{frontMatter.excerpt}</p>
-                <p className="date">
-                  {dayjs(frontMatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
-                  {frontMatter.readingTime}
-                </p>
-              </div>
-            </Link>
-          )
-        })}
+        <Layout>
+          <ProjectsGrid projects={posts} />
+
+          <div className="mt-24">
+            <ClientSection />
+          </div>
+          <ContactSection />
+
+        </Layout>
       </div>
     </React.Fragment>
   )

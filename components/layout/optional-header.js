@@ -28,6 +28,8 @@ function OptionalHeader({meta}) {
           alt={meta.title}
             />
       </div>
+      <div className="w-full h-16 bg-gradient-to-b from-tmdark to-transparent top-0 absolute z-20">
+      </div>
       <div className="absolute w-full top-0 z-20">
         <Header />
       </div>

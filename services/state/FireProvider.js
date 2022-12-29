@@ -15,20 +15,16 @@ const playbook = {
   },
   'step2': {
     index: 2,
-    timeout: 4000
+    timeout: 1300
   },
   'step3': {
     index: 3,
-    timeout: 2000
+    timeout: 1900
   },
   'step4': {
     index: 4,
-    timeout: 3000
+    timeout: 1000
   },
-  'step5': {
-    index: 5,
-    timeout: 4000
-  }
 };
 
 const FireProvider = ({ children }) => {

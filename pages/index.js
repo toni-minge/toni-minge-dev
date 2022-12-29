@@ -9,11 +9,11 @@ import Fire from '../components/layout/fire'
 import GameOver from '../components/overlays/game-over'
 import ClientSection from '../components/layout/client-section'
 import SelectedProjects from '../components/layout/selected-projects'
+import ArticlesGrid from '../components/layout/articles-grid'
+import ContactSection from '../components/layout/contact-section'
 
 import { FireContext } from '../services/state/FireProvider'
-
 import SceneManager from '../components/scene-manager'
-
 import Folder from '../components/project-folder/folder'
 
 import base64 from '../lib/base64/public/img/base64.json'
@@ -47,17 +47,14 @@ export default function Home({articles, projects}) {
 
       {gameOver && <GameOver /> }
 
-
       <Layout optionalHeader={false}>
         <div className="flex flex-wrap gap-16">
           <div className="grid w-full md:grid-cols-2 grid-cols-1 gap-x-8">
             <div className="">
-              <h1>Fullstack Web Development</h1>
+              <h1 className="text-gradient">Fullstack Web Development</h1>
               <h3 className="font-roman mb-8">
                 Traditional and Creative Coding
               </h3>
-              <Fire zIndex={"30"} classOverrides="-top-16 left-10 rotate-90" type={3} index={5}/>
-              <Fire zIndex={"30"} classOverrides="top-14 rotate-1" type={1} index={4}/>
 
               <div className="hidden md:block">
                 <Folder/>
@@ -67,7 +64,7 @@ export default function Home({articles, projects}) {
               <div className="relative max-w-md w-full mx-auto">
                 <Fire zIndex={"40"} classOverrides="top-8 " type={1} index={1}/>
                 <Fire zIndex={"40"} classOverrides="top-6 left-24" type={2} index={2}/>
-                <Fire zIndex={"40"} classOverrides="-top-64 left-48" scale={"1.5"} type={2} index={3}/>
+                <Fire zIndex={"40"} classOverrides="top-52 left-48" scale={"1.2"} type={2} index={3}/>
                 <BlurImage {...headerImage}/>
                 <div
                   style={{
@@ -87,14 +84,23 @@ export default function Home({articles, projects}) {
             </div>
           </div>
           <div className="w-full">
-            <SelectedProjects projects={projects}/>
+            <SelectedProjects isPreview={true} projects={projects}/>
           </div>
-          <div className="">
-            <h2 className=" font-roman text-center">
+
+          <div className="max-w-xl mx-auto my-16">
+            <h2 className=" font-roman text-center text-gradient">
               Hier kommt die Schnittstelle zwischen Kunst und dings und Bums und so und noch mehr text.
             </h2>
           </div>
-          <ClientSection />
+
+          <div className="w-full">
+            <ArticlesGrid articles={articles} />
+          </div>
+
+          <div className="mt-24">
+            <ClientSection />
+          </div>
+          <ContactSection />
         </div>
       </Layout>
 
