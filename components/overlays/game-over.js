@@ -54,7 +54,7 @@ const GameOver = () => {
       <div className="w-screen h-screen grid items-center justify-center p-4">
         <div style={{zIndex: 70}} className={`text-center transition duration-[1000ms] ${!bgVisible ? "opacity-0" : "opacity-100"}`}>
           <h1 className="">GAME OVER</h1>
-          <p className="font-courier mb-4">If I had been there, this would <br/> not have happened to you.</p>
+          <p className="font-courier mb-4">If I had been there, this <br/>would not have happened to you.</p>
           <button onClick={restart} className="border-2 border-white py-2 px-4 font-courier hover:opacity-50 cursor-pointer">Restart</button>
         </div>
       </div>

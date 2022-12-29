@@ -57,8 +57,8 @@ const ArticlesGrid = ({articles}) => {
           </div>
         )}
       </div>
-      <div className="w-4/12 relative">
-        <div className="flex opacity-50 flex-wrap gap-2">
+      <div className="hidden md:block md:w-4/12 relative">
+        <div className="sticky top-4 flex opacity-50 flex-wrap gap-2">
           <div className="bg-tmlight/20 px-4 rounded-full">This</div>
           <div className="bg-tmlight/20 px-4 rounded-full">Section</div>
           <div className="bg-tmlight/20 px-4 rounded-full">Is Still</div>
