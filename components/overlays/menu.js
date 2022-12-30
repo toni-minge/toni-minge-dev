@@ -48,7 +48,7 @@ const Menu = ({isOpen}) => {
             <div className="hidden sm:block"><Link href="/" legacyBehavior><a className="block">Toni Minge</a></Link></div>
             <div className="text-left flex flex-col text-white text-4xl sm:block hidden font-medium">
               <Link href="/projects" legacyBehavior><a className="block">Latest Work</a></Link>
-              <Link href="/about-me" legacyBehavior><a className="block">About Me</a></Link>
+              <Link href="/about" legacyBehavior><a className="block">About Me</a></Link>
               <Link href="/blog" legacyBehavior><a className="block">Blog</a></Link>
               <Link href="/contact" legacyBehavior><a className="block">Contact</a></Link>
             </div>
@@ -93,7 +93,7 @@ const Menu = ({isOpen}) => {
             </div>
             <div className="text-left flex flex-col sm:hidden text-2xl font-medium">
               <Link href="/projects" legacyBehavior><a className="block">Latest Work</a></Link>
-              <Link href="/about-me" legacyBehavior><a className="block">About Me</a></Link>
+              <Link href="/about" legacyBehavior><a className="block">About Me</a></Link>
               <Link href="/blog" legacyBehavior><a className="block">Blog</a></Link>
               <Link href="/contact" legacyBehavior><a className="block">Contact</a></Link>
             </div>

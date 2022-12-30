@@ -21,10 +21,11 @@ function BlurImage({ src, base64, classOverrides, style, ...props }) {
         onLoadingComplete={() => setLoading(false)}
         {...props}
       />
-      <img
-        style={style}
-        className={`h-full w-full object-fill absolute ${width && height ? "scale-95 blur-sm" : "scale-105 blur-xl"}`}
-        src={`data:image/jpeg;base64,${base64}`} />
+      {base64 &&
+        <img
+          style={style}
+          className={`h-full w-full object-fill absolute ${width && height ? "scale-95 blur-sm" : "scale-105 blur-xl"}`}
+          src={`data:image/jpeg;base64,${base64}`} /> }
     </div>
   );
 }

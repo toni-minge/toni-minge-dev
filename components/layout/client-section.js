@@ -3,8 +3,8 @@ import imgData from '../../lib/base64/public/clients/base64.json'
 
 const clients = [
   {
-    src: '/clients/client-logo-03-tu.png',
-    alt: 'Arte'
+    src: '/clients/client-logo-10-livism.png',
+    alt: 'Livism'
   },
   {
     src: '/clients/client-logo-05-knoweaux.png',

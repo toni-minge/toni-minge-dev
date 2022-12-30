@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import BlurImage from './blur-image'
+import RotatingModelViewer from '../3d/rotatingModelViewer'
 import imgData from '../../lib/base64/public/thumbs-articles/base64.json'
 import dayjs from 'dayjs'
 
@@ -57,14 +58,22 @@ const ArticlesGrid = ({articles}) => {
           </div>
         )}
       </div>
-      <div className="w-4/12 relative">
-        <div className="flex opacity-50 flex-wrap gap-2">
-          <div className="bg-tmlight/20 px-4 rounded-full">This</div>
-          <div className="bg-tmlight/20 px-4 rounded-full">Section</div>
-          <div className="bg-tmlight/20 px-4 rounded-full">Is Still</div>
-          <div className="bg-tmlight/20 px-4 rounded-full">Work In</div>
-          <div className="bg-tmlight/20 px-4 rounded-full">Progress</div>
+      <div className="hidden md:block md:w-4/12 relative">
+        <div className="h-full">
+          <div className="sticky top-4">
+            <div>
+              <RotatingModelViewer path={"/3d/ginger.fbx"} />
+            </div>
+            <div className="absolute top-0 left-3/4">
+              Ginger
+            </div>
+            <div style={{rotate: "-25deg", left: '55%', top: '9%'}} className="absolute border-b border-white w-12 lg:w-16">
+            </div>
+
+
+          </div>
         </div>
+
 
       </div>
     </div>

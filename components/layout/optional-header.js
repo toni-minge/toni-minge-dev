@@ -7,6 +7,8 @@ import projects_base64 from '../../lib/base64/public/thumbs-projects/base64.json
 function OptionalHeader({meta}) {
   const [matches, setMatches] = useState(false);
 
+  const { base64 } = meta
+
   if (typeof window !== 'undefined') {
     const mediaMatch = window.matchMedia('(max-width: 640px)')
 
@@ -23,7 +25,7 @@ function OptionalHeader({meta}) {
       <div className="w-screen" style={{width: '100vw', height: matches ? '40vh' : '80vh', overflow: 'hidden'}}>
         <BlurImage
           src={meta.cover_image}
-          base64={projects_base64.data[`public${meta.cover_image}`]}
+          base64={base64 ? base64 : projects_base64.data[`public${meta.cover_image}`]}
           classOverrides={"w-full bg-tmdark h-full"}
           alt={meta.title}
             />
