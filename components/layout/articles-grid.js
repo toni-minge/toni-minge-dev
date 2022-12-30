@@ -59,6 +59,7 @@ const ArticlesGrid = ({articles}) => {
         )}
       </div>
       <div className="hidden md:block md:w-4/12 relative">
+<<<<<<< HEAD
         <div className="h-full">
           <div className="sticky top-4">
             <div>
@@ -72,6 +73,14 @@ const ArticlesGrid = ({articles}) => {
 
 
           </div>
+=======
+        <div className="sticky top-4 flex opacity-50 flex-wrap gap-2">
+          <div className="bg-tmlight/20 px-4 rounded-full">This</div>
+          <div className="bg-tmlight/20 px-4 rounded-full">Section</div>
+          <div className="bg-tmlight/20 px-4 rounded-full">Is Still</div>
+          <div className="bg-tmlight/20 px-4 rounded-full">Work In</div>
+          <div className="bg-tmlight/20 px-4 rounded-full">Progress</div>
+>>>>>>> ba6ef0a83369f33864f7c4f491e1f6ccf8e26b86
         </div>
 
 
