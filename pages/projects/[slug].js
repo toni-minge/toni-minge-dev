@@ -1,7 +1,10 @@
 import dayjs from 'dayjs'
 import React from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
+import BlurImage from '../../components/layout/blur-image'
+import ClientSection from '../../components/layout/client-section'
+import ContactSection from '../../components/layout/contact-section'
+import ProjectsGrid from '../../components/layout/selected-projects'
 import rehypeSlug from 'rehype-slug'
 import { MDXRemote } from 'next-mdx-remote'
 import rehypeHighlight from 'rehype-highlight'
@@ -11,28 +14,189 @@ import 'highlight.js/styles/atom-one-dark-reasonable.css'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { getProjectFromSlug, getProjectSlug } from '../../services/utils/mdx'
 
+
+const H1 = ({children}) => {
+  return (<h1 className="mb-2" id={children[1]}>{children}</h1>)
+}
+
+const H2 = ({children}) => {
+  return (<h2 className="mb-2 max-w-md mt-28 mx-auto" id={children[1]}>{children}</h2>)
+}
+
+const H3 = ({children}) => {
+  return (<h3 className="mb-2 max-w-md mx-auto" id={children[1]}>{children}</h3>)
+}
+
+const Ol = ({children}) => {
+  return (<ol className="ml-8 block list-disc">{children}</ol>)
+}
+
+const Pre = ({children}) => {
+  return (<pre className="overflow-y-scroll mb-8">{children}</pre>)
+}
+
+const A = ({children, href}) => {
+  return (<a href={href} className="underline">{children}</a>)
+}
+
+const image_data = {
+  classOverrides: "w-full mb-1",
+  layout: "cover",
+  width: "1920",
+  height: "1080",
+  style: {
+    width: '100%',
+    height: 'auto',
+  },
+}
+
+const Video = ({...props}) => {
+  const { className, src } = props
+  return (
+    <div className={`max-w-mx mx-auto mb-8 ${className}`}>
+      <video playsInline={true} autoPlay={true} loop={true} muted={true} src={src}/>
+    </div>
+  )
+}
+
+
+const Image = ({children, title, src, alt, height, width, data, ...rest}) => {
+
+  const obj = {
+    ...image_data,
+    src: src,
+    alt: alt,
+    base64: data[`public${src}`],
+  }
+
+  console.log(rest)
+
+  height ? obj.height = height : null
+  width ? obj.width = width : null
+
+  return (
+    <div className="w-full">
+      <BlurImage
+        {...obj}
+      />
+      <div className="text-center mb-8">
+        <span className="text-tmligth opacity-50 text-sm">{title}</span>
+      </div>
+    </div>
+  )
+}
+
+const P = ({children, props, data, ...rest}) => {
+  if (typeof children === "string"){
+    return (<p className="mb-32 font-roman text-tmlight max-w-md mx-auto">{children}</p>)
+  }
+
+  console.log(children.props)
+
+  if (children.props.src) {
+    const filepath = children.props.src.split('.')
+    const filetype = filepath[filepath.length - 1]
+    const { src, alt, title } = children.props
+
+    const segments = title?.split("/")
+    const height = segments ? segments[2] : undefined
+    const width = segments ? segments[1] : undefined
+    const _title = segments ? segments[0] : undefined
+
+    switch (filetype) {
+      case "jpg":
+        return <Image height={height} width={width} title={_title} src={src} alt={alt} data={data} />
+        break;
+      case "mp4":
+        return <Video src={src} alt={alt} data={data} />
+        break;
+      default:
+        return <div></div>
+
+    }
+  }
+
+
+}
+
+
+
 import Layout from '../../components/layout/layout'
 
-export default function Blog({ post: { source, frontmatter } }) {
+export default function Blog({ post: { source, frontmatter }, related_projects }) {
+
+  const {title, techstack, links, excerpt, description, base64_path, created} = frontmatter
+  const { data } = require(`../../lib/base64/public/${base64_path}/base64.json`)
+
+  const components = {
+    h1: H1,
+    h2: H2,
+    h3: H3,
+    ol: Ol,
+    pre: Pre,
+    a: A,
+    video: Video,
+    p: ({...rest}) => <P {...rest} data={data}/> ,
+    img: ({...rest}) => <Image {...rest} data={data}/>
+  }
+
 
   return (
     <React.Fragment>
       <Head>
-        <title>{frontmatter.title} | My blog</title>
+        <title>{frontmatter.title} | My Projects</title>
       </Head>
       <Layout optionalHeader={true} meta={frontmatter}>
-        <MDXRemote {...source}  />
-      </Layout>
-      {/*<div className="article-container">
-        <h1 className="article-title">{frontmatter.title}</h1>
-        <p className="publish-date">
-          {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
-          {frontmatter.readingTime}
-        </p>
-        <div className="content">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-x-8 w-full py-8">
+          <div className="w-full col-span-1 md:col-span-3">
+            <span className="block opacity-50">{title}</span>
+            <h1 className="">{excerpt}</h1>
+          </div>
+          <div className="w-full md:col-start-5 col-span-1 md:col-span-2 leading-relaxed flex flex-col gap-8 font-roman opacity-80">
+            <div className="">
+              {description}
+            </div>
+            <div>
+              <span className="opacity-50 text-sm block mb-2">
+                Links
+              </span>
+              <ul className="leading-relaxed">
+              {links.map((l, i) =>
+                <li><a className="underline" href={l.link} target="_blank" rel="noreferrer">{l.type}</a></li>
+              )}
+              </ul>
+            </div>
 
+            <div>
+              <span className="opacity-50 text-sm block mb-2">
+                Techstack
+              </span>
+              <ul className="leading-relaxed">
+              {techstack.map((t, i) =>
+                <li>{t}</li>
+              )}
+              </ul>
+            </div>
+
+            <div>
+              <span className="opacity-50 text-sm block mb-2">
+                Created
+              </span>
+              <ul className="leading-relaxed">
+                <li>{created}</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
-      </div>*/}
+        <div className="mt-8 mb-32">
+          <MDXRemote {...source} components={components} />
+        </div>
+
+        <ProjectsGrid isPreview={true} projects={related_projects} title="Related Projects"/>
+
+        <ContactSection />
+      </Layout>
     </React.Fragment>
   )
 }
@@ -61,18 +225,21 @@ export async function getStaticProps({ params }) {
     mdxOptions: {
       rehypePlugins: [
         rehypeSlug,
-        [
-          rehypeAutolinkHeadings,
-          {
-            properties: { className: ['anchor'] },
-          },
-          { behaviour: 'wrap' },
-        ],
         rehypeHighlight,
         rehypeCodeTitles,
-      ],
+      ]
     },
   })
+
+  const promises = []
+
+  frontmatter.related_projects?.forEach((item, i) => {
+    promises.push(getProjectFromSlug(item))
+  });
+
+  const resolved_promises = await Promise.all(promises)
+  const final_data = resolved_promises.map((d) => ({...d.frontmatter}))
+
 
   return {
     props: {
@@ -80,6 +247,7 @@ export async function getStaticProps({ params }) {
         source: mdxSource,
         frontmatter,
       },
+      related_projects: final_data
     },
   }
 }

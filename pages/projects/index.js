@@ -18,7 +18,7 @@ export default function ProjectPage({ posts }) {
       </Head>
       <div>
         <Layout>
-          <ProjectsGrid projects={posts} />
+          <ProjectsGrid title="All Projects" isPreview={false} projects={posts} />
 
           <div className="mt-24">
             <ClientSection />

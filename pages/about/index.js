@@ -70,7 +70,7 @@ const About = ({projects}) => {
           </div>
 
           <div className="w-full">
-            <SelectedProjects isPreview={true} projects={projects}/>
+            <SelectedProjects title="Selected Projects" isPreview={true} projects={projects}/>
           </div>
           <div className="mt-24">
             <ClientSection />

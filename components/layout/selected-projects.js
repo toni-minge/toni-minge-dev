@@ -2,7 +2,7 @@ import Link from 'next/link'
 import BlurImage from './blur-image'
 import imgData from '../../lib/base64/public/thumbs-projects/base64.json'
 
-const SelectedProjects = ({projects, isPreview}) => {
+const SelectedProjects = ({projects, isPreview, title}) => {
 
   const renderImgItem = (c, i) => {
     const base64 = imgData.data[`public${c.src}`]
@@ -22,7 +22,13 @@ const SelectedProjects = ({projects, isPreview}) => {
 
   return (
     <div className="">
-      <h2 className="font-roman">{isPreview ? "Selected" : "All Selected"} Projects</h2>
+      <div className="flex gap-4 items-center">
+        <h2 className="font-roman">{title}</h2>
+        {isPreview ?
+          <Link href="/projects" legacyBehavior><a className="underline">See all</a></Link> :
+          null
+        }
+      </div>
       <div className="grid w-full grid-cols-1 sm:grid-cols-2 gap-8">
         {projects.map((p, index) =>
           <Link href={`/projects/${p.slug}`} passHref>
