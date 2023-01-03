@@ -20,23 +20,27 @@ const H1 = ({children}) => {
 }
 
 const H2 = ({children}) => {
-  return (<h2 className="mb-2 max-w-md mt-28 mx-auto" id={children[1]}>{children}</h2>)
+  return (<h2 className="mb-2" id={children[1]}>{children}</h2>)
 }
 
 const H3 = ({children}) => {
-  return (<h3 className="mb-2 max-w-md mx-auto" id={children[1]}>{children}</h3>)
+  return (<h3 className="mb-2" id={children[1]}>{children}</h3>)
 }
 
 const Ol = ({children}) => {
-  return (<ol className="ml-8 block list-disc">{children}</ol>)
+  return (<ol className="ml-8 mb-4 block list-disc">{children}</ol>)
+}
+
+const Ul = ({children}) => {
+  return (<ol className="ml-4 mb-8 block list-disc">{children}</ol>)
 }
 
 const Pre = ({children}) => {
-  return (<pre className="overflow-y-scroll mb-8">{children}</pre>)
+  return (<pre className="overflow-y-scroll mb-8 p-4 bg-tmlight/10 rounded">{children}</pre>)
 }
 
 const A = ({children, href}) => {
-  return (<a href={href} className="underline">{children}</a>)
+  return (<a href={href} traget="_blank" rel="noopener" className="underline">{children}</a>)
 }
 
 const image_data = {
@@ -88,10 +92,8 @@ const Image = ({children, title, src, alt, height, width, data, ...rest}) => {
 
 const P = ({children, props, data, ...rest}) => {
   if (typeof children === "string"){
-    return (<p className="mb-32 font-roman text-tmlight max-w-md mx-auto">{children}</p>)
+    return (<p className="mb-4 font-roman text-tmlight">{children}</p>)
   }
-
-  console.log(children.props)
 
   if (children.props.src) {
     const filepath = children.props.src.split('.')
@@ -105,6 +107,7 @@ const P = ({children, props, data, ...rest}) => {
 
     switch (filetype) {
       case "jpg":
+      case "png":
         return <Image height={height} width={width} title={_title} src={src} alt={alt} data={data} />
         break;
       case "mp4":
@@ -133,6 +136,7 @@ export default function Blog({ post: { source, frontmatter }, related_projects }
     h2: H2,
     h3: H3,
     ol: Ol,
+    ul: Ul,
     pre: Pre,
     a: A,
     video: Video,
@@ -144,8 +148,9 @@ export default function Blog({ post: { source, frontmatter }, related_projects }
   return (
     <React.Fragment>
       <Head>
-        <title>{frontmatter.title} | My Projects</title>
+        <title>{frontmatter.title} | Projects</title>
       </Head>
+
       <Layout optionalHeader={true} meta={frontmatter}>
         <div className="grid grid-cols-1 md:grid-cols-6 gap-x-8 w-full py-8">
           <div className="w-full col-span-1 md:col-span-3">

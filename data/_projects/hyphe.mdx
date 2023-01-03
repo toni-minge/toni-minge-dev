@@ -2,14 +2,14 @@
 title: 'Hyphe'
 publishedAt: '2020-04-12'
 created: '2020'
-excerpt: 'An Interactive Fiction About Radical Honesty'
-description: 'Back then, when I studied in Leipzig, we had the idea to make a kind of AirBnB for house parties. After many different versions, this is the final version: A tool where hosts can create an event and guests can vote together in groups on which event they want to go to.'
+excerpt: "A Play About Radical Honesty. But: Don't Judge."
+description: 'Hyphe is a live interactive game that ends up being neither a play nor a computer game - an artistic attempt to exaggerate digital principles of togetherness to create a world that survives through compassion, support and community. '
 cover_image: '/thumbs-projects/hyphe_l.jpg'
 cover_image_height: 1920
 cover_image_width: 1080
 base64_path: 'projects/hyphe'
 selected: true
-techstack: ["react", "firebase"]
+techstack: ["react", "express.js", "websockets", "p5.js", "mongoDB", "stripe SDK", "mailgun"]
 links: [
   {
     type: "website",
@@ -25,39 +25,173 @@ related_projects: ["loulu", "aimy-rocks"]
 
 ![Interface Test](/projects/hyphe/hyphe-03-intro.jpg "")
 
-## About the project
-We had several things to to
+<section className="project-section">
 
-### bla
+### About the Project
+The idea is this: Players land as breadcrumbs on an empty map and find that they can connect with other crumbs. In the course of the game, about 50 players per performance meet in real time and have the opportunity to answer questions together - to get closer.
 
-![Interface Test](/projects/hyphe/hyphe-04-gameplay.jpg "Gameplay/1920/1200")
+The more connected, the better - until suddenly a voice enters the game: Birder, with his perfidious plan of radical honesty.
 
-![Interface Test](/projects/hyphe/hyphe-05-gameplay.jpg "Gameplay/1920/1200")
+### My Contribution to the Project
+Technologically, Hyphe was like landing on the moon: real-time interactions via websockets, livestream video, livestream audio, real-time editorial team intervention, game animations, a digital store system and many other little things - as part of Minge+Schmidt, it was my job to make all this technologically feasible. And we made it possible.
 
-## test it like Schnittstell
 
-text und so
+</section>
 
-![Interface Test](/projects/hyphe/hyphe-06-dev.jpg "That's us developing ideas./1920/1920")
+![Interface Test](/projects/hyphe/hyphe-06-dev.jpg "The Production Team and I while discussing ideas./1920/1920")
 
-```jsx
-<div>
-  Test
-</div>
-```
+<section className="project-section">
 
-![Interface Test](/projects/hyphe/hyphe-07-dashboard.jpg "Dashboard, cool wa?/1920/1200")
+### It Is Not Impossible to Combine Theater and Technology
+There are always disagreements between art and technology: the particular challenge with Hyphe was to find the right balance between feasibility and artistic freedom.
 
-![Interface Test](/projects/hyphe/hyphe-08-dashboard.jpg "Dashboard/1920/1200")
+When developing the storyboard, the production team had many different ideas, all of which seemed more or less feasible, especially considering the limited budget available. But we made it happen.
 
-![Interface Test](/projects/hyphe/hyphe-09-dashboard.jpg "Dashboard/1920/1200")
+### Design Sprint Meets Theater
+As an agency, we were of course experienced in developing prototypes and knew how to develop projects as efficiently as possible.
 
-![Interface Test](/projects/hyphe/hyphe-10-game.jpg "/1920/1200")
+It would certainly have been applicable if we had made a to-do app, but since this was an unconventional project, we had to try to cast conventional methods in unconventional procedures.
 
-![Interface Test](/projects/hyphe/hyphe-11-game.jpg "Dashboard/1920/1200")
+</section>
 
-![Interface Test](/projects/hyphe/hyphe-12-admin.jpg "Dashboard/1920/1080")
 
 ![Interface Test](/projects/hyphe/hyphe-12-shop.jpg "Dashboard/1288/1459")
 
-![Interface Test](/projects/hyphe/hyphe-13-dev.jpg "That's me, controlling everything./1920/1080")
+<section className="project-section">
+
+### First Step: Create A Shop
+Here I have all already had to lay all the foundations for the play. Particularly challenging was the possibility that the participants could buy one, or several tickets with freely selectable amounts.
+
+Whereupon then also the participant tickets had to be sent to different email addresses, in order to achieve a kind of email authentication. In addition, database entries had to be made with each purchase so that certain users could also participate in one of the ten performance dates.
+
+
+```jsx
+  const handleSubmit = async event => {
+    event.preventDefault();
+    const new_order_lines = convertOrderLinesToStripe(orderLines)
+
+    try {
+      const session = await axios.post('/api/payment/session-initiate', new_order_lines)
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.data.id
+      });
+    } catch (err){
+      console.log(err)
+    }
+  };
+```
+
+</section>
+
+
+![Interface Test](/projects/hyphe/hyphe-07-dashboard.jpg "Admin Panel: Game Controller/1920/1200")
+
+![Interface Test](/projects/hyphe/hyphe-08-dashboard.jpg "Admin Panel: Shop Overview/1920/1200")
+
+![Interface Test](/projects/hyphe/hyphe-09-dashboard.jpg "Admin Panel: User Management/1920/1200")
+
+<section className="project-section">
+
+### Second Step: Create a Backend and Admin Panel
+Since it would have been inefficient to use an open source headless CMS here, I had to build my own CMS. Especially because the websocket system had to be integrated from the beginning:
+
+```jsx
+export const joinChat = (room_id, user) => async () => {
+  io.emit('listen:to', room_id)
+  const search = {_id: room_id, 'related_user.user_id': user._id }
+  const update = {$set: { 'related_user.$.online': true, will_continue: [] }}
+  await axios.post(`${host}/api/connection/update/${room_id}`, {search: search, update: update})
+}
+```
+
+</section>
+
+
+![Hyphe Gameplay](/projects/hyphe/hyphe-04-gameplay.jpg "Gameplay/1920/1200")
+
+![Hyphe Gameplay](/projects/hyphe/hyphe-05-gameplay.jpg "A conversation between two players/1920/1200")
+
+<section className="project-section">
+
+### Third Step: Build the Frontend
+
+Building the frontend was a bit of a feat. Not only did I have to render gameplay in real time, but the visualization had to reflect the artistic idea of the "hyphae".
+
+With p5.js, I had to tinker so much to animate the movement of the connecting strands:
+
+```jsx
+this.drawExtension = function(p5, x0, y0, zoom, up, i){
+  var initRot = up ? this.angle + p5.PI / 2 : this.angle + p5.PI / 2  + p5.PI
+  var amplitude = p5.PI / 4
+
+  var noise = p5.noise(this.yOff + i * 2 / 3)
+
+  var rad = zoom * 4 + i
+  var rot = p5.map(noise, 1, 0, initRot - amplitude, initRot + amplitude)
+
+  var xN = x0 + rad * p5.cos(rot)
+  var yN = y0 + rad * p5.sin(rot)
+
+  p5.line(x0, y0, xN, yN)
+
+  return {xN, yN, rot}
+}
+```
+
+### The Movement
+
+![Interface Test](/projects/hyphe/hyphe-00-screen.mp4)
+
+### Adding Tons of Overlays
+In the screenshots below you can see that it was necessary to include many different overlays. This was challenging in the sense that it was necessary to connect all the elements in real time.
+
+So there was a group chat that had to communicate in real time with the backend and also a video element that plays the live acting of the main character.
+
+</section>
+
+
+![Interface Test](/projects/hyphe/hyphe-10-game.jpg "The live performance of the main actor/1920/1200")
+
+![Interface Test](/projects/hyphe/hyphe-11-game.jpg "The beginning of the game: players can connect in real time/1920/1200")
+
+<section className="project-section">
+
+### The Stage Is Yours
+After many months of development, the time had finally come. The play went live. On ten evenings, 50 players each could participate and interactively determine the outcome of the play.
+
+My task was to finally see if the servers would hold out. And luckily, everything worked out - with more than 50,000 user-generated messages, each performance went ahead as planned.
+
+### Huston, We Don’t Have a Problem
+Actually, I'm a notoriously optimistic person, but just before the first show started, I was nervous as hell.
+
+But to see that so many people can communicate with each other in real time, that made me totally happy.  In the end, during each performance, 8 people in the backend, 50 people on the field and the actor were interacting at the same time - and it was really like landing on the moon!
+
+</section>
+
+![Interface Test](/projects/hyphe/hyphe-12-admin.jpg "The crew at the premiere: With the Admin Panel they could intervene in the game./1920/1080")
+
+![Interface Test](/projects/hyphe/hyphe-13-dev.jpg "Me, controlling everything./1920/1080")
+
+<section className="project-section">
+
+### Media
+- [Süddeutsche Zeitung](https://www.sueddeutsche.de/kultur/online-theater-seid-wie-die-pilze-1.4882285)
+- [Theaterscoutings Berlin](https://www.theaterscoutings-berlin.de/programm/event/nachgespraechsformat_sichtweisheiten_digital_zu_hyphe_dont_judge_1468/)
+- [Der Bund CH](https://www.derbund.ch/wer-faengt-meine-sporen-191210460094)
+- [Nachtkritik](https://nachtkritik.de/index.php?option=com_content&view=article&id=18361:intime-raeume-wie-das-netztheater-den-zuschauer-fuer-sich-entdeckt&catid=53&Itemid=60)
+
+### Credits
+- **Concept:** Saladin Dellers, Sean Keller, Johanna Kolberg, Fabiola Kuonen
+- **Direction:** Johanna Kolberg
+- **Text:** Sean Keller
+- **Dramaturgy:** Fabiola Kuonen
+- **Initiator, acting:** Saladin Dellers
+- **Music:** Lorin Brockhaus
+- **Game design, UX & Development:** Toni Minge, Johannes Schmidt
+- **Regie Assistant:** Stella Schimmele
+- **Livestream Technology:** Wieland Hilker
+- **Outside Eye:** Caspar Bankert
+- **Production:** Barbara Boss, Michael Röhrenbach
+- **PR & Press:** Caspar Weimann
+- **Press Graphic:** Hana Yoo
+</section>

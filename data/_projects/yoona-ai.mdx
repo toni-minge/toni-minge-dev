@@ -1,13 +1,79 @@
 ---
 title: 'Yoona.ai'
-publishedAt: '2022-04-16'
-excerpt: 'Fashin in just three clicks'
-cover_image: '/thumbs-projects/yoona.jpg'
-cover_image_height: 720
-cover_image_width: 1280
+publishedAt: '2020-03-04'
+created: '2020'
+excerpt: 'Fashion in Just Three Clicks.'
+description: 'Yoona.ai is a pioneering B2B company for process automation in fashion design through artificial intelligence. We accompanied their team from shaping the concept for their product until the launch of their MVP. Therefore we took the lead in designing the overall user experience and developing the front end.'
+cover_image: '/thumbs-projects/yoona-hero_n.jpg'
+cover_image_height: 1920
+cover_image_width: 1080
+base64_path: 'projects/yoona'
 selected: true
+techstack: ["react", "django"]
+links: [
+  {
+    type: "website",
+    link: "https://www.yoona.ai/"
+  },
+]
+related_projects: ["aimy-rocks", "hyphe"]
 ---
 
-# Yoona.ai
+![Interface Test](/projects/yoona/04-Branding.png "/1920/1280")
 
-This is the body of my blog post.
+![Interface Test](/projects/yoona/07-Website.png "/1920/1280")
+
+<section className="project-section">
+
+### Fashion With Artificial Intelligence
+For our agency Minge+Schmidt, Yoona.ai was one of our first clients. Yoona.ai's mission is to make the fashion development process more efficient with artificial intelligence. Our task was to develop a first MVP, including branding, UI and UX.
+
+</section>
+
+![Interface Test](/projects/yoona/08-Product.jpg "/1920/1280")
+
+![Interface Test](/projects/yoona/09-Product.jpg "/1920/1280")
+
+![Interface Test](/projects/yoona/10-Product.jpg "/1920/1280")
+
+<section className="project-section">
+
+### My Contribution to the Project
+Together with the backend team of Yoona.ai I developed the first frontend application. For this it was important to develop a robust project structure and to use common frontend methods to communicate with the backend:
+
+```js
+async function createCollection(){
+  try {
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    var res = await axios.post(`/api-endpoint`,
+      {name: name},
+      {headers:
+        {Authorization: "JWT " + user.access}
+       })
+    res.data.images = []
+    dispatch({type: 'INSERT_COLLECTION', payload: res.data})
+    setCollectionName('')
+    toastSuccess()
+    closeModal()
+  } catch (err) {
+    toastError()
+    console.log(err)
+  }
+}
+```
+
+</section>
+
+![Interface Test](/projects/yoona/05-Icon-Animation.mp4 "/1920/1280")
+
+![Interface Test](/projects/yoona/06-Icons.png "/1920/1280")
+
+<section className="project-section">
+  ### Dozends of Icons
+  I have not only programmed the frontend, but also designed all the icons. So if there is also need for something like this, I can help 😉
+</section>
+
+
+![Interface Test](/projects/yoona/11-Product.jpg "/1920/1280")
+
+![Interface Test](/projects/yoona/12-Product.jpg "/1920/1280")

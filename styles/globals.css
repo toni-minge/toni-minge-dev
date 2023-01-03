@@ -90,6 +90,11 @@ footer {
   background-position: 0 100%
 }
 
+.project-section {
+  padding: 46px 0px 82px;
+  @apply mx-auto block w-full max-w-xl leading-relaxed;
+}
+
 
 * {
   box-sizing: border-box;
