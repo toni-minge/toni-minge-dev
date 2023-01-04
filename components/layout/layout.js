@@ -5,6 +5,7 @@ import Header from './header';
 import Footer from './footer';
 import OptionalHeader from './optional-header';
 import { AppContext } from '../../services/state/AppProvider'
+import Head from 'next/head'
 
 function Layout({ children, optionalHeader, meta }) {
 
@@ -13,6 +14,13 @@ function Layout({ children, optionalHeader, meta }) {
 
   return (
     <div>
+      <Head>
+        <title>Toni Minge Development</title>
+        <meta name="description" content="Toni Minge is a fullstack developer based in Berlin. Traditional and creative coding with specialization in frontend technologies, UI, UX design and fully comprehensive project development from start to finish." />
+        <meta property="og:image" content="/img/share-img" />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="1080" />
+      </Head>
       {menuIsOpen && <Menu/>}
       {optionalHeader ? <OptionalHeader meta={meta}/> : null}
       {!optionalHeader ? <Header pathname={router.pathname} /> : null}

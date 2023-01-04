@@ -98,7 +98,7 @@ const P = ({children, props, data, ...rest}) => {
   if (typeof children === "string"){
     return (<p className="mb-2 font-roman text-tmlight">{children}</p>)
   }
-  
+
   if (children?.props?.src) {
     const filepath = children.props.src.split('.')
     const filetype = filepath[filepath.length - 1]
@@ -151,8 +151,13 @@ export default function Blog({ post: { source, frontmatter }, related_projects }
 
   return (
     <React.Fragment>
+
       <Head>
-        <title>{frontmatter.title} | Projects</title>
+        <title>{frontmatter.title} | Toni Minge Development</title>
+        <meta name="description" content={description} />
+        <meta property="og:image" content={frontmatter.cover_image} />
+        <meta property="og:image:width" content={frontmatter.cover_image_width} />
+        <meta property="og:image:height" content={frontmatter.cover_image_height} />
       </Head>
 
       <Layout optionalHeader={true} meta={frontmatter}>
