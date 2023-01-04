@@ -152,15 +152,16 @@ export default function Blog({ post: { source, frontmatter }, related_projects }
   return (
     <React.Fragment>
 
-      <Head>
-        <title>{frontmatter.title} | Toni Minge Development</title>
-        <meta name="description" content={description} />
-        <meta property="og:image" content={`https://toni-minge-dev.vercel.app${frontmatter.cover_image}`} />
-        <meta property="og:image:width" content={frontmatter.cover_image_width} />
-        <meta property="og:image:height" content={frontmatter.cover_image_height} />
-      </Head>
-
       <Layout optionalHeader={true} meta={frontmatter}>
+
+        <Head>
+          <title>{frontmatter.title} | Toni Minge Development</title>
+          <meta name="description" content={description} />
+          <meta property="og:image" content={`https://toni-minge-dev.vercel.app${frontmatter.cover_image}`} />
+          <meta property="og:image:width" content={frontmatter.cover_image_width} />
+          <meta property="og:image:height" content={frontmatter.cover_image_height} />
+        </Head>
+        
         <div className="grid grid-cols-1 md:grid-cols-6 gap-x-8 w-full py-8">
           <div className="w-full col-span-1 md:col-span-3">
             <span className="block opacity-50">{title}</span>
