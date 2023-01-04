@@ -88,6 +88,15 @@ export default function Blog({ post: { source, frontmatter, headings } }) {
       <Head>
         <title>{frontmatter.title} | My blog</title>
       </Head>
+
+      <Head>
+        <title>{frontmatter.title} | Toni Minge Development</title>
+        <meta name="description" content={frontmatter.excerpt} />
+        <meta property="og:image" content={frontmatter.cover_image} />
+        <meta property="og:image:width" content={frontmatter.cover_image_width} />
+        <meta property="og:image:height" content={frontmatter.cover_image_height} />
+      </Head>
+
       <Layout>
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-5">
