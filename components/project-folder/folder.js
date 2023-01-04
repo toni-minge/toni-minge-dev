@@ -12,10 +12,10 @@ const structure = [
         name: 'latest projects',
         type: 'folder',
         children: [
-          { name: 'ethernal faces', type: 'link', link: '/projects/ethernal-faces' },
           { name: 'hyphe', type: 'link', link: '/projects/hyphe' },
           { name: 'aimy.rocks', type: 'link', link: '/projects/aimy-rocks' },
           { name: 'loulu', type: 'link', link: '/projects/loulu' },
+          { name: 'yoona.ai', type: 'link', link: '/projects/yoona-ai' },
         ],
       },
       {
@@ -23,8 +23,8 @@ const structure = [
         type: 'folder',
         children: [
           { name: 'about me', type: 'link', link: "/about" },
-          { name: 'thoughts', type: 'link', link: "/thoughts" },
-          { name: 'process', type: 'link', link: "/process" },
+          { name: 'blog', type: 'link', link: "/blog" },
+          { name: 'my-paintings', type: 'link', link: "https://toniminge.com" },
           { name: 'contact', type: 'link', link: "/contact" },
         ],
       },
@@ -41,7 +41,7 @@ const structure = [
                   {
                     name: 'are you sure?', type: 'folder',
                     children: [
-                      { name: 'fire distinguisher', type: 'file' },
+                      { name: 'file_lost', type: 'file' },
                     ],
                   },
                 ],

@@ -1,6 +1,7 @@
 import { getAllProjects, getAllPosts } from '../../services/utils/mdx'
 import base64 from '../../lib/base64/public/img/base64.json'
 
+import Link from 'next/link'
 import Layout from '../../components/layout/layout'
 import SelectedProjects from '../../components/layout/selected-projects'
 import ClientSection from '../../components/layout/client-section'
@@ -15,20 +16,20 @@ const data = {
 
 const offers = [
   {
-    title: "Libraries",
-    content: ["React.js", "Next.js", "Express.js", "Websockets.js"]
+    title: "Frontend",
+    content: ["react.js", "react native", "next.js", "p5.js", "UI/UX"]
   },
   {
-    title: "Concepts",
-    content: ["Websockets", "API Endpoints", "CRUD", "Design Sprint"]
+    title: "Backend",
+    content: ["express.js", "API Endpoints", "strapi", "Websockets", "NoSQL Databases"]
   },
   {
-    title: "Digital Experience",
-    content: ["React.js", "Next.js", "Express.js", "Websockets.js"]
+    title: "Design Thinking",
+    content: ["Customer Journey", "Persona Creation", "Design Sprint"]
   },
   {
-    title: "Engeneering",
-    content: ["React.js", "Next.js", "Express.js", "Websockets.js"]
+    title: "Development",
+    content: ["Technical Discovery", "CMS Implementation", "Technical Architecture", "Quality Assurance"]
   }
 ]
 
@@ -44,9 +45,17 @@ const About = ({projects}) => {
             </div>
             <div className="w-full leading-relaxed flex flex-col gap-8">
               <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                My career as a developer started rather unconventionally. When I was still studying art in Leipzig, I started developing simple WordPress websites to pay my rent. Additionally, I enrolled in all courses at the <a className="underline" target="_blank" rel="noopener" href="https://www.hgb-leipzig.de/">HGB Leipzig</a> that revolved around website development (without suspecting that I would do this professionally one day). After some time, <a className="underline" target="_blank" rel="noopener" href="https://schmidtjohannes.com/">Johannes</a> (a good friend of mine) and I decided to make an app for <Link href="/projects/aimy-rocks" legacyBehavior><a className="underline">house parties.</a></Link> Since we had constant shortage of developers, I started looking into more abstract concepts and got in touch with Django as a Python backend system.
+              </p>
               <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+                We kept iterating on our app over the years, which is how I came across systems like React, React Native, and Firebase. And when I realized that I was incredibly interested in this world, it was all too late. Since then, I fell in love with the internet.
+              </p>
+              <p>
+                Then in 2019, Johannes and I founded our agency <a className="underline" target="_blank" rel="noopener" href="https://www.minge-schmidt.com/">Minge+Schmidt</a>. From then on, I professionalized all my essential basic skills and since then I've been working full time as a fullstack developer.
+              </p>
+              <p>
+                During this time I was able to work for clients like HAU Hebel am Ufer, Yoona.ai, Descript, Mataono, Noahworks, Livism, Female Business Angels, Auxxo Investment, Onlinetheater.live, and Knoweaux.
+
               </p>
             </div>
           </div>

@@ -38,10 +38,10 @@ const ArticlesGrid = ({articles}) => {
         {articles.map((a, i) =>
           <div className="">
             <Link href={`/blog/${a.slug}`}>
-              <div className="flex gap-4 items-center">
-                <div className="w-8/12">
-                  <h3 className="font-roman text-tmlight text-2xl hover:text-white line-clamp-2">{a.title}</h3>
-                  <p className="opacity-70 line-clamp-2">{a.excerpt}</p>
+              <div className="flex flex-col flex-col-reverse sm:flex-row gap-y-4 gap-x-4 items-center">
+                <div className="w-full sm:w-8/12">
+                  <h3 className="font-roman mb-0 text-tmlight text-2xl hover:text-white line-clamp-2">{a.title}</h3>
+                  <p className="opacity-70 line-clamp-2 mb-4">{a.excerpt}</p>
                   <div className="flex gap-2 mt-2 text-sm opacity-50 flex-wrap">
                     <div>{dayjs(a.publishedAt).format("MMM D, \xa0 YYYY")}</div>
                     <div>•</div>
@@ -50,7 +50,7 @@ const ArticlesGrid = ({articles}) => {
                     {renderCategories(a.categories)}
                   </div>
                 </div>
-                <div className="w-4/12">
+                <div className="w-full sm:w-4/12">
                   {renderImgItem(a)}
                 </div>
               </div>

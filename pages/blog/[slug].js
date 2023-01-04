@@ -9,7 +9,11 @@ import rehypeCodeTitles from 'rehype-code-titles'
 import { serialize } from 'next-mdx-remote/serialize'
 import 'highlight.js/styles/atom-one-dark-reasonable.css'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import { getBlogFromSlug, getBlogSlug } from '../../services/utils/mdx'
+import { getBlogFromSlug, getBlogSlug, getAllProjects } from '../../services/utils/mdx'
+
+import ClientSection from '../../components/layout/client-section'
+import ContactSection from '../../components/layout/contact-section'
+import SelectedProjects from '../../components/layout/selected-projects'
 
 import Layout from '../../components/layout/layout'
 import BlurImage from '../../components/layout/blur-image'
@@ -42,14 +46,18 @@ const A = ({children, href}) => {
   return (<a href={href} className="underline">{children}</a>)
 }
 
+const Ul = ({children}) => {
+  return (<ol className="ml-4 mb-8 block list-disc">{children}</ol>)
+}
 
 
-export default function Blog({ post: { source, frontmatter, headings } }) {
+
+export default function Blog({post: { source, frontmatter, headings, projects} }) {
 
   const { title, cover_image } = frontmatter
 
   const regXHeader = /# {1,6}.+/g
-  const cleaned_headings = headings.map((heading) => {
+  const cleaned_headings = headings?.map((heading) => {
     if (heading.match(regXHeader) !== null) {
       return {
         level: heading.split("#").length - 3,
@@ -57,6 +65,8 @@ export default function Blog({ post: { source, frontmatter, headings } }) {
       }
     }
   }).filter(h => h !== undefined)
+
+  console.log(projects)
 
 
   const image = {
@@ -80,7 +90,8 @@ export default function Blog({ post: { source, frontmatter, headings } }) {
     p: P,
     ol: Ol,
     pre: Pre,
-    a: A
+    a: A,
+    ul: Ul,
   }
 
   return (
@@ -97,7 +108,7 @@ export default function Blog({ post: { source, frontmatter, headings } }) {
         </Head>
 
         <div className="grid grid-cols-12 gap-8">
-          <div className="col-span-5">
+          <div className="md:col-span-5 col-span-12">
             <div className="sticky top-4 leading-loose">
               <h3 className="font-roman">Table of Contents </h3>
               {cleaned_headings.map((heading, i) =>
@@ -112,7 +123,7 @@ export default function Blog({ post: { source, frontmatter, headings } }) {
             </div>
 
           </div>
-          <div className="col-span-7 flex w-full flex-col gap-8">
+          <div className="md:col-span-7 col-span-12 flex w-full flex-col gap-8">
             <div className="w-full">
               <BlurImage {...image} />
             </div>
@@ -128,6 +139,15 @@ export default function Blog({ post: { source, frontmatter, headings } }) {
             </div>
           </div>
         </div>
+
+        <div className="w-full mt-24">
+          <SelectedProjects title="Selected Projects" isPreview={true} projects={projects}/>
+        </div>
+
+        <div className="my-24">
+          <ClientSection />
+        </div>
+        <ContactSection />
 
       </Layout>
 
@@ -172,6 +192,12 @@ export async function getStaticProps({ params }) {
     },
   })
 
+  const projects = await getAllProjects()
+  const _proj = projects.filter(p => p.selected)
+
+  console.log(_proj)
+
+
   const regXHeader = /#{1,6}.+/g
   const headings = content.match(regXHeader)
 
@@ -180,7 +206,8 @@ export async function getStaticProps({ params }) {
       post: {
         source: mdxSource,
         frontmatter,
-        headings
+        headings: headings ? headings : [],
+        projects: _proj,
       },
     },
   }

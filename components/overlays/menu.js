@@ -55,11 +55,11 @@ const Menu = ({isOpen}) => {
             <div className="text-left">
               <span>Latest Work</span>
               <div className="">
-                <Link href="/projects/ethernal-faces" legacyBehavior>
-                  <a className="block text-xl font-medium">Ethernal Faces</a>
-                </Link>
                 <Link href="/projects/loulu" legacyBehavior>
                   <a className="block text-xl font-medium">Loulu</a>
+                </Link>
+                <Link href="/projects/aimy-rocks" legacyBehavior>
+                  <a className="block text-xl font-medium">Aimy Rocks</a>
                 </Link>
                 <Link href="/projects/hyphe" legacyBehavior>
                   <a className="block text-xl font-medium">Hyphe</a>
@@ -73,10 +73,10 @@ const Menu = ({isOpen}) => {
             <div className="text-left sm:hidden block">
               <span>Links</span>
               <div className="">
-                <a target="blank" href="https://toniminge.de" className="block text-xl font-medium">paintings</a>
-                <a target="blank" href="https://github.com/toni-minge" className="block text-xl font-medium">github</a>
-                <a target="blank" href="https://www.instagram.com/toni_minge/" className="block text-xl font-medium">instagram</a>
-                <a target="blank" href="https://www.linkedin.com/in/toni-minge-329022b4/" className="block text-xl font-medium">linkedin</a>
+                <a target="blank" href="https://toniminge.de" className="block text-xl font-medium">Paintings</a>
+                <a target="blank" href="https://github.com/toni-minge" className="block text-xl font-medium">Github</a>
+                <a target="blank" href="https://www.instagram.com/toni_minge/" className="block text-xl font-medium">Instagram</a>
+                <a target="blank" href="https://www.linkedin.com/in/toni-minge-329022b4/" className="block text-xl font-medium">LinkedIn</a>
               </div>
             </div>
 
@@ -86,7 +86,7 @@ const Menu = ({isOpen}) => {
               <div className="flex justify-between gap-4">
                 <div className="leading-3 pt-1 text-left">
                   <b>🦾 <a href="mailto:dev@toniminge.de" className="">dev@toniminge.com</a></b> <br/>
-                  <span className="text-xs font-roman">Availiable for freelance work</span>
+                  <span className="text-sm font-roman">Availiable for freelance work</span>
                 </div>
                 <button onClick={close} className="cursor-pointer text-2xl">Close</button>
               </div>
@@ -101,10 +101,10 @@ const Menu = ({isOpen}) => {
             <div className="text-left hidden sm:block">
               <span>Links</span>
               <div className="">
-                <a target="blank" href="https://toniminge.de" className="block text-xl font-medium">paintings</a>
-                <a target="blank" href="https://github.com/toni-minge" className="block text-xl font-medium">github</a>
-                <a target="blank" href="https://www.instagram.com/toni_minge/" className="block text-xl font-medium">instagram</a>
-                <a target="blank" href="https://www.linkedin.com/in/toni-minge-329022b4/" className="block text-xl font-medium">linkedin</a>
+                <a target="blank" href="https://toniminge.de" className="block text-xl font-medium">Paintings</a>
+                <a target="blank" href="https://github.com/toni-minge" className="block text-xl font-medium">Github</a>
+                <a target="blank" href="https://www.instagram.com/toni_minge/" className="block text-xl font-medium">Instagram</a>
+                <a target="blank" href="https://www.linkedin.com/in/toni-minge-329022b4/" className="block text-xl font-medium">LinkedIn</a>
               </div>
             </div>
           </div>

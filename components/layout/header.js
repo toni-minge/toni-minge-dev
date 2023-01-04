@@ -11,10 +11,10 @@ function Header() {
       <div className="flex flex-row justify-between">
         <Link href="/">Toni Minge</Link>
         <div className="flex gap-8">
-          <Link href="/about" legacyBehavior><a className="link link-underline link-underline-black">About</a></Link>
-          <Link href="/contact" legacyBehavior><a className="link link-underline link-underline-black">Contact</a></Link>
-          <Link href="/projects" legacyBehavior><a className="link link-underline link-underline-black">Projects</a></Link>
-          <Link href="/blog" legacyBehavior><a className="link link-underline link-underline-black">Blog</a></Link>
+          <Link href="/about" legacyBehavior><a className="link link-underline link-underline-black hidden sm:block">About</a></Link>
+          <Link href="/contact" legacyBehavior><a className="link link-underline link-underline-black hidden sm:block">Contact</a></Link>
+          <Link href="/projects" legacyBehavior><a className="link link-underline link-underline-black hidden sm:block">Projects</a></Link>
+          <Link href="/blog" legacyBehavior><a className="link link-underline link-underline-black hidden sm:block">Blog</a></Link>
           <button onClick={() => setMenuIsOpen(true)}>Menu</button>
         </div>
 
