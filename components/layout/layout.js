@@ -17,7 +17,7 @@ function Layout({ children, optionalHeader, meta }) {
       <Head>
         <title>Toni Minge Development</title>
         <meta name="description" content="Toni Minge is a fullstack developer based in Berlin. Traditional and creative coding with specialization in frontend technologies, UI, UX design and fully comprehensive project development from start to finish." />
-        <meta property="og:image" content="/img/share-image.jpg" />
+        <meta property="og:image" content="https://toni-minge-dev.vercel.app/img/share-image.jpg" />
         <meta property="og:image:width" content="1920" />
         <meta property="og:image:height" content="1080" />
       </Head>

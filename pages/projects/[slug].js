@@ -155,7 +155,7 @@ export default function Blog({ post: { source, frontmatter }, related_projects }
       <Head>
         <title>{frontmatter.title} | Toni Minge Development</title>
         <meta name="description" content={description} />
-        <meta property="og:image" content={frontmatter.cover_image} />
+        <meta property="og:image" content={`https://toni-minge-dev.vercel.app/${frontmatter.cover_image}`} />
         <meta property="og:image:width" content={frontmatter.cover_image_width} />
         <meta property="og:image:height" content={frontmatter.cover_image_height} />
       </Head>
