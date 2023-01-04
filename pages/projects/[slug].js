@@ -16,15 +16,15 @@ import { getProjectFromSlug, getProjectSlug } from '../../services/utils/mdx'
 
 
 const H1 = ({children}) => {
-  return (<h1 className="mb-2" id={children[1]}>{children}</h1>)
+  return (<h1 className="mb-1 mt-16" id={children[1]}>{children}</h1>)
 }
 
 const H2 = ({children}) => {
-  return (<h2 className="mb-2" id={children[1]}>{children}</h2>)
+  return (<h2 className="mb-1 mt-16" id={children[1]}>{children}</h2>)
 }
 
 const H3 = ({children}) => {
-  return (<h3 className="mb-2" id={children[1]}>{children}</h3>)
+  return (<h3 className="mb-1 mt-16" id={children[1]}>{children}</h3>)
 }
 
 const Ol = ({children}) => {
@@ -36,7 +36,7 @@ const Ul = ({children}) => {
 }
 
 const Pre = ({children}) => {
-  return (<pre className="overflow-y-scroll mb-8 p-4 bg-tmlight/10 rounded">{children}</pre>)
+  return (<pre className="overflow-y-scroll mb-8 mt-8 p-4 bg-tmlight/10 rounded">{children}</pre>)
 }
 
 const A = ({children, href}) => {
@@ -73,8 +73,6 @@ const Image = ({children, title, src, alt, height, width, data, ...rest}) => {
     base64: data[`public${src}`],
   }
 
-  console.log(rest)
-
   height ? obj.height = height : null
   width ? obj.width = width : null
 
@@ -90,9 +88,15 @@ const Image = ({children, title, src, alt, height, width, data, ...rest}) => {
   )
 }
 
+// somehow there's some kind of weird error
+// or: I configured the mdx parser wrong
+// but it puts images in p tags which confuses
+// the next.js hydration system
+// ---------------------
+// this is a workaround
 const P = ({children, props, data, ...rest}) => {
   if (typeof children === "string"){
-    return (<p className="mb-4 font-roman text-tmlight">{children}</p>)
+    return (<p className="mb-2 font-roman text-tmlight">{children}</p>)
   }
 
   if (children.props.src) {

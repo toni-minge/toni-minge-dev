@@ -2,30 +2,152 @@
 title: 'Loulu'
 publishedAt: '2022-04-16'
 created: '2021'
-excerpt: 'An Interactive Fiction!'
-description: 'Ethernal Faces is an artistic attempt to make people immortal on the blockchain. It uses blockchain infrastructure, image compression techniques and pop cultural references to let people become an NFT themselves.'
-cover_image: '/thumbs-projects/loulu.jpg'
+excerpt: 'An Interactive Fiction About Radicalization on the Internet.'
+description: 'Loulu is a game that invites players into an interactive fiction. The single-player game makes manipulation tactics and discourse shifts of "new right" networks tangible and shows that social internet platforms can be perfect germ cells for targeted radicalization.'
+cover_image: '/thumbs-projects/loulu_n.jpg'
 cover_image_height: 720
 cover_image_width: 1280
 base64_path: 'projects/loulu'
 selected: true
-techstack: ["solidity", "next.js", "IPFS", "tailwind"]
+techstack: ["react native", "strapi", "mongoDB", "Lottie"]
 links: [
   {
     type: "website",
-    link: "https://www.ethernalfaces.com/"
+    link: "https://onlinetheater.live/project/loulu"
   },
   {
-    type: "github",
-    link: "https://github.com/toni-minge/immortal-faces"
+    type: "iOS App",
+    link: "https://apps.apple.com/de/app/loulu/id1565191591"
+  },
+  {
+    type: "Android App",
+    link: "https://play.google.com/store/apps/details?id=com.toni.minge.louluapp&pli=1"
   },
 ]
 related_projects: ["hyphe", "ethernal-faces"]
 ---
 
+![plot](/projects/loulu/09-dev.jpg "Mobile phones at HAU2 Studio setup to play Loulu live./1920/1000")
 
-# My Blog Post
+<section className="project-section">
+### The Story
+The successful influencer frida became the victim of a shitstorm on the social network vire. seeking help, she turns to the players, who quickly find out: this shitstorm didn't happen by chance, it was planned and executed by a right-wing network that uses skilful digital media strategies to try to influence the social discourse on topics such as feminism, gender, LGBTQIA+ visibility and diversity in the long term and thus push through racist and sexist policies.
 
-This is the body of my blog post.
+Lifestyle-influencer Loulu is particularly striking here, pondering sadly and thoughtfully about being a mother, the fast-paced society and the topic of home. What are the connections between loulu and the network that attacks frida so strongly?
 
-![plot](/projects/loulu/test_01.jpg)
+Together with Frida and supported by internet specialist Robin, the players is set out to find the strategy manual of the far-right "movement" and slip deeper and deeper into the network's core...
+</section>
+
+![plot](/projects/loulu/07-dev.jpg "We used Design Sprint principles to develop the main mechanics./1920/1000")
+
+<section className="project-section">
+### My Contribution to the Project
+
+Making a game about the "New Right" presents many challenges. In the summer of 2021, we (Caspar Weimann, Luzia Oppermann, and Kathi Kraft) sat down and developed the basic mechanics for Loulu.
+
+After talking to numerous experts on the "New Right" and anti-feminist structures on the internet for almost a year, we knew we had to be very precise in our work.  
+
+  In order to remain effective, I proposed to use the Design Sprint process for the development. Actually very unusual for an artistic project. But at the end of a week we had a working prototype, which was important to test our thesis.
+
+### Converting the Idea into Code
+After a few iterations, it was clear to us that we needed a native solution. Also, we noticed that platform switching is an important element for radicalization on the Internet, so in the end I had to build not just one app but actually three apps.
+
+</section>
+
+
+![plot](/projects/loulu/01-pling.jpg "Pling is the second platform of the game, inspired by Telegram/1920/1000")
+
+<section className="project-section">
+### First Challenge: Develop a Turn-Based System
+As you may see in the image above, an important mechanism relies on choices to respond to the chat. Not too complicated in itself, one would think. In the end, however, it actually took the most effort. The reason: different media types triggered by certain messages and selecting the next messages along a huge decision tree.
+
+
+```jsx
+for (var i = 1; i < 4; i++) {
+  if (item['0$(i):go_to' ] === '') break;
+  const action = {
+    preview_anwser: item ['0${i):preview'],
+    full_answer: item['0${i):full_answer'],
+    go_to_ref_id: item['0$(i):go_to'].startswith('A') ? item['0$(i):go_to'] : ''
+  }
+  tmp_item.actions[i - 1] = action
+}
+```
+
+### Infrastructure for Dramturgy
+Because the turn-based content had to be modifiable until the end, I had to set up a CMS so that the team could enter the content independently of me. Because we also needed a lot of video files, which were also connected to the selection system, I decided to use Strapi as a headless CMS.
+</section>
+
+![plot](/projects/loulu/02-vire.jpg "The first platform of the game, Vire, inspired by TikTok/1920/1000")
+
+<section className="project-section">
+### Hey Toni, Can You Build Us Something Like TikTok?
+
+Sure, I can do that, I thought. The development of the second platform ended up being much more problematic than I thought. The reason: performance problems. Everything worked great on my phone, but not on others - until the end, that was the biggest problem.
+
+How did I solve this? By being meticulous about what has to go into RAM and what gets deleted again. That means: With every video change (swipe up once), the last video must be "deleted" and the next one "loaded". In previous versions, this was not the case and caused the app to virtually render all of the 100 videos at once instead of just three. Learning by doing.
+
+### Pretend to Be Synchronous
+For the gaming experience, it was important that players feel like they're being fed content in sync, like they're getting a feed freshly created by TikTok. This is where I had to use a trick: I loaded the database, which actually causes synchronicity in just such applications, into a large json file via script for each version.
+
+(This saved us server costs and eliminated potential security risks so that our content couldn't be abused) The only thing that is actually synchronously passed to each session are all the video and photo files that we provide via AWS.
+
+</section>
+
+
+![plot](/projects/loulu/03_channelz.jpg "The last platform of the game, Channelz, inspired by Discord/1920/1000")
+
+
+<section className="project-section">
+### Managing for the First Time
+As part of Minge+Schmidt, Loulu was not my only project at the time of development. Since we had received other important orders that we couldn't turn down, nwir had to outsource parts of Loulu's development. And that was very exciting for me - after all, I had never managed a team before.
+
+Suddenly, I was no longer busy programming all day. From then on, every morning I read code, merged code and delegated tasks. At noon I planned new tasks (which was probably the most important task: because one task builds on the next) and in the afternoon I was still programming on the other projects myself. Those were really wild times.
+
+</section>
+
+
+![plot](/projects/loulu/08-dev.jpg "Caspar Weimann und Luzia Oppermann being interviewed by ttt - titel, thesen, temperamente./1920/1000")
+
+<section className="project-section">
+  ### The Time After the Release
+  What happened after that was wild. Countless media outlets wrote about Loulu, we won the Brave Award and the Amadeus Antonio Prize, and reached several thousand downloads in the AppStores.
+
+  ### Making the Game Accessible for Schools
+  At the moment, the team is preparing the game for school lessons. This means that accompanying material is being created that can be used by teachers to communicate the content of the game. And then, hopefully, the game will achieve what we always wanted: to expose new-right and anti-feminist radicalization structures on the Internet.
+
+  ### The Trailer
+  <iframe src="https://player.vimeo.com/video/560333623?h=38a9f5bdfd" width="640" height="1138" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/560333623">Trailer &ldquo;Loulu&rdquo; onlinetheater.live</a> from <a href="https://vimeo.com/user50104276">HAU Hebbel am Ufer</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
+</section>
+
+![plot](/projects/loulu/10-dev.jpg "Luzia Oppermann next to our roll-up at Freiland Festival./1920/1500")
+
+
+<section className="project-section">
+### Media
+
+- [Deutschlandfunk Kultur](https://www.deutschlandfunkkultur.de/game-loulu-dem-algorithmus-rechte-einstellungen-vorgaukeln-100.html)
+- [Stiftung Digitale Spiele Kultur](https://www.stiftung-digitale-spielekultur.de/spiele-erinnerungskultur/loulu/)
+- [Tagesspiegel](https://www.tagesspiegel.de/kultur/mit-loulu-gegen-manipulation-eine-app-entlarvt-die-tricks-der-neuen-rechten-315751.html)
+- [Belltower News](https://www.belltower.news/interview-zum-spiel-loulu-radikalisierung-ist-ein-schleichender-prozess-117567/)
+- [Hellerau](https://www.hellerau.org/de/loulu/)
+- [Politische Jugenbildung](https://politische-jugendbildung.blog/medien-mitwirkungspotenziale-und-handlungsoptionen-in-der-digitalen-welt/game-loulu)
+- [Wiener Bildungsserver](https://lehrerweb.wien/praxis/software-apps/loulu)
+- [Performingarts](https://performingarts.digital/programm/loulu)
+- [Amadeu Antonio Stiftung](https://www.amadeu-antonio-stiftung.de/pressemitteilungen/amadeu-antonio-preis-2021-an-das-onlinetheater-live-und-das-theater-hau-hebbel-am-ufer-verliehen/)
+- [Video: Amadeu Antonio Preis](https://www.youtube.com/watch?v=pDt3mf5eLLM&ab_channel=AmadeuAntonioStiftung)
+- [Heidelberger Stückemarkt](https://heidelberger-stueckemarkt.nachtkritik.de/netzmarkt/netzmarkt-loulu-von-onlinetheater-live-und-hau-hebbel-am-ufer)
+
+### Credits
+
+- **konzept, dramaturgie, regie**: kathi kraft, toni minge, luzia oppermann und caspar weimann
+- **design und spielentwicklung**: minge+schmidt
+- **performance**: luzia oppermann (Loulu), katrija lehmann (Frida), maxi thienen (der.Valentino), alina hidic (fit_girl), otiti engelhardt (BayernLiebevonJana), lily josephin frank (B*tch of the East), vivi gutheinz (makeup.with.lisa), kim patrick biele (CatMe1995), sarah palarczyk und david krzysteczko (SweeTLove), dominik tippelt (Johann.Gronheimer), mona georgia müller (LenaMusic), jacqueline marcel gisdol (DonSeduction) u.v.m.
+- **feedback und playtesting**: jasmin degeling, sarah fartuun heinze, mick prinz, marie kristin rodewald, arne vogelgesang u.a.
+- **dramaturgie (HAU Hebbel am Ufer)**: sarah reimann
+- **danke an**: johan olsson, johanna roth, fabienne ten thije
+- **produktion**: onlinetheater.live und [HAU Hebbel am Ufer](https://www.hebbel-am-ufer.de/programm/hau4/onlinetheater-live-loulu)
+- **gefördert durch**: Kulturstiftung des Bundes im rahmen von dive.in programm für digitale interaktion
+</section>
