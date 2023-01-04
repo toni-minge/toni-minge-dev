@@ -98,8 +98,8 @@ const P = ({children, props, data, ...rest}) => {
   if (typeof children === "string"){
     return (<p className="mb-2 font-roman text-tmlight">{children}</p>)
   }
-
-  if (children.props.src) {
+  
+  if (children?.props?.src) {
     const filepath = children.props.src.split('.')
     const filetype = filepath[filepath.length - 1]
     const { src, alt, title } = children.props

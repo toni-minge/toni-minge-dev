@@ -35,7 +35,7 @@ const Contact = () => {
       <Layout>
         <h1 className="text-gradient mb-8 text-center sm:text-left">Book a Free <br/>Consultation</h1>
         <div className="grid grid-cols-12 w-full gap-8">
-          <div className="sm:col-span-6 xl:col-start-9 xl:col-span-6 col-span-12 order-2 flex justify-center md:justify-end">
+          <div className="sm:col-span-6 lg:col-start-9 lg:col-span-6 col-span-12 order-2 flex justify-center md:justify-end">
             <div className="max-w-sm w-full">
               <BlurImage {...image}/>
 
@@ -44,7 +44,7 @@ const Contact = () => {
             </div>
 
           </div>
-          <div className="sm:col-span-6 xl:col-span-4 col-span-12 order-1">
+          <div className="sm:col-span-6 lg:col-span-4 col-span-12 order-1">
             <div className="overflow-hidden bg-tmdark">
               <InlineWidget
                 pageSettings={pageSettings}
