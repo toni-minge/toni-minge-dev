@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import Fire from '../layout/fire'
 
@@ -28,6 +29,7 @@ function useDelayedState(delayTimes) {
 
 const GameOver = () => {
   const [bgVisible, setBgVisible] = useState(false)
+  const router = useRouter()
   const { activeFire, addFire, playbook, gameOver, clearFire, setCanKill } = useContext(FireContext)
   const { activeScene, setActiveScene, scenes, countUp } = useContext(SceneContext)
 
@@ -45,6 +47,7 @@ const GameOver = () => {
     setActiveScene(1)
     clearFire()
     setCanKill(false)
+    router.push("/contact")
 
     document.body.classList.remove("loescher");
   }
@@ -55,7 +58,7 @@ const GameOver = () => {
         <div style={{zIndex: 70}} className={`text-center transition duration-[1000ms] ${!bgVisible ? "opacity-0" : "opacity-100"}`}>
           <h1 className="">GAME OVER</h1>
           <p className="font-courier mb-4">If I had been there, this <br/>would not have happened to you.</p>
-          <button onClick={restart} className="border-2 border-white py-2 px-4 font-courier hover:opacity-50 cursor-pointer">Restart</button>
+          <button onClick={restart} className="border-2 border-white py-2 px-4 font-courier hover:opacity-50 cursor-pointer">Restart, with me</button>
         </div>
       </div>
       {step >= 1 && <Fire zIndex={"50"} classOverrides="bottom-32" scale="3.1" type={1} index={1}/> }

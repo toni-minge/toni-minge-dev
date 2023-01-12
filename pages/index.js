@@ -89,7 +89,7 @@ export default function Home({articles, projects}) {
 
           <div className="max-w-xl mx-auto my-16">
             <h2 className=" font-roman text-center text-gradient">
-              Hier kommt die Schnittstelle zwischen Kunst und dings und Bums und so und noch mehr text.
+              Unlock the full potential of your project with my expert programming skills and passion for creative coding. Let's soar to new heights together.
             </h2>
           </div>
 
