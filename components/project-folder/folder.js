@@ -12,6 +12,8 @@ const structure = [
         name: 'latest projects',
         type: 'folder',
         children: [
+          { name: 'potluck', type: 'link', link: '/projects/potluck' },
+          { name: 'hamburg distilling company', type: 'link', link: '/projects/hdc' },
           { name: 'hyphe', type: 'link', link: '/projects/hyphe' },
           { name: 'aimy.rocks', type: 'link', link: '/projects/aimy-rocks' },
           { name: 'loulu', type: 'link', link: '/projects/loulu' },
@@ -65,7 +67,7 @@ const Folder = ({ name, children, open, setOpen, level }) => {
 
   return (
     <div className={`flex flex-col gap-4`}>
-      <span style={{marginLeft: `${level * 30}px`}} className={`flex items-center gap-2 cursor-pointer`} onClick={toggleOpen}>
+      <span style={{ marginLeft: `${level * 30}px` }} className={`flex items-center gap-2 cursor-pointer`} onClick={toggleOpen}>
         <div className="border-b border-l h-3 w-3 self-start border-white"></div>
         <img className="h-6" src={open ? "/icons/t_folder_open.svg" : "/icons/t_folder_close_01.svg"} />
         <span className="font-courier">{name}</span>
@@ -89,9 +91,9 @@ const File = ({ name, level, type, link }) => {
   }
 
   return (
-    <div style={{marginLeft: `${level * 30}px`}} className={`flex items-center gap-2`}>
+    <div style={{ marginLeft: `${level * 30}px` }} className={`flex items-center gap-2`}>
       <div className="border-b border-l h-3 w-3 self-start border-white"></div>
-      <img className="h-6" src="/icons/t_file.svg"/>
+      <img className="h-6" src="/icons/t_file.svg" />
       {type === "link" ?
         <Link href={link} legacyBehavior><a className="font-courier cursor-pointer">{name}</a></Link> :
         <span onClick={() => grabExtinguisher(name)} className="font-courier cursor-pointe">{name}</span>

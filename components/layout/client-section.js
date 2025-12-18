@@ -3,8 +3,16 @@ import imgData from '../../lib/base64/public/clients/base64.json'
 
 const clients = [
   {
-    src: '/clients/client-logo-10-livism.png',
-    alt: 'Livism'
+    src: '/clients/client-logo-potluck.png',
+    alt: 'Potluck'
+  },
+  {
+    src: '/clients/client-logo-hdc.png',
+    alt: 'Hamburg Distilling Company'
+  },
+  {
+    src: '/clients/client-logo-agenda.png',
+    alt: 'Livis'
   },
   {
     src: '/clients/client-logo-05-knoweaux.png',
@@ -47,7 +55,7 @@ const ClientSection = () => {
       <div className="grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-2">
         {clients.map((client, index) => (
           <div className="h-full w-full" key={index}>
-            <img src={client.src}/>
+            <img src={client.src} />
           </div>
         ))}
       </div>

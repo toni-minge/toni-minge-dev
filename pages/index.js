@@ -32,7 +32,7 @@ const headerImage = {
   },
 }
 
-export default function Home({articles, projects}) {
+export default function Home({ articles, projects }) {
 
   const { activeFire, addFire, playbook, gameOver } = useContext(FireContext)
 
@@ -45,27 +45,27 @@ export default function Home({articles, projects}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {gameOver && <GameOver /> }
+      {gameOver && <GameOver />}
 
       <Layout optionalHeader={false}>
         <div className="flex flex-wrap gap-16">
           <div className="grid w-full md:grid-cols-2 grid-cols-1 gap-x-8">
             <div className="">
-              <h1 className="text-gradient">Fullstack Web Development</h1>
+              <h1 className="text-gradient">Senior React & Next.js Developer</h1>
               <h3 className="font-roman mb-8">
-                Traditional and Creative Coding
+                8+ Years Experience · Agency- & Startup-Projects · Remote
               </h3>
 
               <div className="hidden md:block">
-                <Folder/>
+                <Folder />
               </div>
             </div>
             <div className="flex flex-col md:justify-start">
               <div className="relative max-w-md w-full mx-auto">
-                <Fire zIndex={"40"} classOverrides="top-8 " type={1} index={1}/>
-                <Fire zIndex={"40"} classOverrides="top-6 left-24" type={2} index={2}/>
-                <Fire zIndex={"40"} classOverrides="top-52 left-48" scale={"1.2"} type={2} index={3}/>
-                <BlurImage {...headerImage}/>
+                <Fire zIndex={"40"} classOverrides="top-8 " type={1} index={1} />
+                <Fire zIndex={"40"} classOverrides="top-6 left-24" type={2} index={2} />
+                <Fire zIndex={"40"} classOverrides="top-52 left-48" scale={"1.2"} type={2} index={3} />
+                <BlurImage {...headerImage} />
                 <div
                   style={{
                     top: "11%",
@@ -75,16 +75,19 @@ export default function Home({articles, projects}) {
                     mixBlendMode: "lighten",
                   }}
                   className="absolute z-20 overflow-hidden sm:p-4 p-2">
-                    <SceneManager />
+                  <SceneManager />
                 </div>
               </div>
               <div className="md:hidden block w-full">
-                <Folder/>
+                <Folder />
               </div>
             </div>
           </div>
+          <div className="mt-24">
+            <ClientSection />
+          </div>
           <div className="w-full">
-            <SelectedProjects title="Selected Projects" isPreview={true} projects={projects}/>
+            <SelectedProjects title="Selected Projects" isPreview={true} projects={projects} />
           </div>
 
           <div className="max-w-xl mx-auto my-16">
@@ -97,9 +100,7 @@ export default function Home({articles, projects}) {
             <ArticlesGrid articles={articles} />
           </div>
 
-          <div className="mt-24">
-            <ClientSection />
-          </div>
+
           <ContactSection />
         </div>
       </Layout>

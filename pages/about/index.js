@@ -16,24 +16,49 @@ const data = {
 
 const offers = [
   {
-    title: "Frontend",
-    content: ["react.js", "react native", "next.js", "p5.js", "UI/UX"]
+    title: "Frontend Engineering",
+    content: [
+      "React & React Native",
+      "Next.js & Remix",
+      "Shopify Hydrogen",
+      "Tailwind CSS & SCSS",
+      "Performance-focused UI development"
+    ]
   },
   {
-    title: "Backend",
-    content: ["express.js", "API Endpoints", "strapi", "Websockets", "NoSQL Databases"]
+    title: "Backend & Architecture",
+    content: [
+      "Node.js & Express",
+      "API design & integrations",
+      "Headless CMS (Builder.io, Directus, Strapi)",
+      "Authentication & data flows",
+      "Scalable application architecture"
+    ]
   },
   {
-    title: "Design Thinking",
-    content: ["Customer Journey", "Persona Creation", "Design Sprint"]
+    title: "E-Commerce & Headless Systems",
+    content: [
+      "Shopify headless setups",
+      "WooCommerce optimization & migrations",
+      "Conversion-focused shop architecture",
+      "Checkout & cart optimization",
+      "SEO-friendly content structures"
+    ]
   },
   {
-    title: "Development",
-    content: ["Technical Discovery", "CMS Implementation", "Technical Architecture", "Quality Assurance"]
+    title: "Product & UX Thinking",
+    content: [
+      "Technical discovery & consulting",
+      "Data-driven UX decisions",
+      "User journeys & conversion funnels",
+      "Iterative optimization",
+      "Quality assurance & long-term maintainability"
+    ]
   }
 ]
 
-const About = ({projects}) => {
+
+const About = ({ projects }) => {
   return (
     <div>
       <Layout optionalHeader={true} meta={data}>
@@ -41,22 +66,29 @@ const About = ({projects}) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full py-8">
             <div className="w-full">
               <span className="block opacity-50">About me</span>
-              <h1 className="text-gradient">How I Became <br/>a Developer.</h1>
+              <h1 className="text-gradient">How I Became <br />a Developer.</h1>
             </div>
             <div className="w-full leading-relaxed flex flex-col gap-8">
               <p>
-                My career as a developer started rather unconventionally. When I was still studying art in Leipzig, I started developing simple WordPress websites to pay my rent. Additionally, I enrolled in all courses at the <a className="underline" target="_blank" rel="noopener" href="https://www.hgb-leipzig.de/">HGB Leipzig</a> that revolved around website development (without suspecting that I would do this professionally one day). After some time, <a className="underline" target="_blank" rel="noopener" href="https://schmidtjohannes.com/">Johannes</a> (a good friend of mine) and I decided to make an app for <Link href="/projects/aimy-rocks" legacyBehavior><a className="underline">house parties.</a></Link> Since we had constant shortage of developers, I started looking into more abstract concepts and got in touch with Django as a Python backend system.
+                My path into software development was anything but linear. While studying fine arts in Leipzig, I began building simple WordPress websites to pay my rent. At the same time, I enrolled in every course at <a className="underline" target="_blank" rel="noopener" href="https://www.hgb-leipzig.de/">HGB Leipzig</a> that touched on web technologies — without realizing that this would eventually become my profession.
               </p>
-              <p>
-                We kept iterating on our app over the years, which is how I came across systems like React, React Native, and Firebase. And when I realized that I was incredibly interested in this world, it was all too late. Since then, I fell in love with the internet.
-              </p>
-              <p>
-                Then in 2019, Johannes and I founded our agency <a className="underline" target="_blank" rel="noopener" href="https://www.minge-schmidt.com/">Minge+Schmidt</a>. From then on, I professionalized all my essential basic skills and since then I've been working full time as a fullstack developer.
-              </p>
-              <p>
-                During this time I was able to work for clients like HAU Hebel am Ufer, Yoona.ai, Descript, Mataono, Noahworks, Livism, Female Business Angels, Auxxo Investment, Onlinetheater.live, and Knoweaux.
 
+              <p>
+                Together with my friend <a className="underline" target="_blank" rel="noopener" href="https://schmidtjohannes.com/">Johannes</a>, I later started developing an app for <Link href="/projects/aimy-rocks" legacyBehavior><a className="underline">house parties</a></Link>. Due to a constant shortage of developers, I quickly moved beyond visual design and into more abstract technical concepts, eventually working with Django as a Python backend. That project became my gateway into software architecture and product thinking.
               </p>
+
+              <p>
+                Over the years, we kept iterating on the app, which naturally led me to technologies like React, React Native, and Firebase. At some point, it became clear that I was deeply drawn to building systems rather than just interfaces. I didn’t plan to “switch careers” — I simply followed my curiosity until the internet became my primary medium.
+              </p>
+
+              <p>
+                In 2019, Johannes and I founded our agency <a className="underline" target="_blank" rel="noopener" href="https://www.minge-schmidt.com/">Minge+Schmidt</a>. Since then, I’ve been working full-time as a freelance full-stack developer, gradually specializing in modern web architectures with React, Next.js, Remix, headless CMS solutions, and Shopify Hydrogen. Today, my focus lies on performance-driven, scalable products that balance strong UX with technical clarity.
+              </p>
+
+              <p>
+                Over the years, I’ve worked with a wide range of clients — from cultural institutions and startups to investment firms and e-commerce brands — including HAU Hebel am Ufer, Yoona.ai, Descript, Mataono, Female Business Angels, Auxxo Investment, Onlinetheater.live, Knoweaux, Hamburg Distilling Company, and Potluck.
+              </p>
+
             </div>
           </div>
 
@@ -79,7 +111,7 @@ const About = ({projects}) => {
           </div>
 
           <div className="w-full">
-            <SelectedProjects title="Selected Projects" isPreview={true} projects={projects}/>
+            <SelectedProjects title="Selected Projects" isPreview={true} projects={projects} />
           </div>
           <div className="mt-24">
             <ClientSection />
